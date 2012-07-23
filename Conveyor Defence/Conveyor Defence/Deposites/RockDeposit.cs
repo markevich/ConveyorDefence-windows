@@ -26,8 +26,12 @@ namespace Conveyor_Defence.Deposits
                 Output();
             }
         }
+
+        private int rocksCount = 0;
         public void Output()
         {
+            rocksCount++;
+            System.Diagnostics.Debug.WriteLine(String.Format("Rock deposit generate rock {0} !", rocksCount));
             var rock = new Projectile();
             if (mine != null)
                 mine.Input(rock);

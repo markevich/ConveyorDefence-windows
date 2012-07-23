@@ -19,6 +19,9 @@ namespace Conveyor_Defence
         TileMap map;
         private Mine mine;
         private RockDeposit deposit;
+        private Conveyor conveyor1;
+        private Conveyor conveyor2;
+        private Conveyor conveyor3;
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -42,8 +45,11 @@ namespace Conveyor_Defence
                 );
 
             InitializeCamera();
-            deposit = new RockDeposit(2000f);
-            mine = new Mine();
+            deposit = new RockDeposit(15000f);
+            conveyor3 = new Conveyor(null, "3");
+            conveyor2 = new Conveyor(conveyor3, "2");
+            conveyor1 = new Conveyor(conveyor2, "1");
+            mine = new Mine(conveyor1);
             deposit.mine = mine;
         }
 
@@ -65,7 +71,9 @@ namespace Conveyor_Defence
             HandleInput();
             deposit.Update(gameTime);
             mine.Update(gameTime);
-
+            conveyor1.Update(gameTime);
+            conveyor2.Update(gameTime);
+            conveyor3.Update(gameTime);
             base.Update(gameTime);
         }
 
