@@ -1,40 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Conveyor_Defence.Missiles;
-using Microsoft.Xna.Framework;
+﻿using Conveyor_Defence.Missiles;
 
 namespace Conveyor_Defence.Deposits
 {
-    internal class RockDeposit : Deposit
+    internal class RockDeposit : Node
     {
-        private float generationTime;
-        public Mine mine;
-        public RockDeposit(float generationTime)
+        public RockDeposit(float generationTime, Node nextNode) :base(generationTime, nextNode)
+        {}
+
+        protected override void Process()
         {
-            this.generationTime = generationTime;
+            this.timeSinseLastProcess = 0;
+            var data = new Rock();
+            Output(data);
+        }
+        protected override void Output(NodeData data)
+        {
+            base.Output(data);
+            System.Diagnostics.Debug.WriteLine("Rock number {0} generated from deposit!", outputsCount);
         }
 
-        private float timeSinseLastGeneration = 0;
-        public void Update(GameTime gameTime)
+        protected override bool hasNodeDatas()
         {
-            timeSinseLastGeneration += gameTime.ElapsedGameTime.Milliseconds;
-            if (timeSinseLastGeneration > generationTime)
-            {
-                timeSinseLastGeneration = 0;
-                Output();
-            }
+            return true;
         }
 
-        private int rocksCount = 0;
-        public void Output()
-        {
-            rocksCount++;
-            System.Diagnostics.Debug.WriteLine(String.Format("Rock deposit generate rock {0} !", rocksCount));
-            var rock = new Projectile();
-            if (mine != null)
-                mine.Input(rock);
-        }
     }
 }

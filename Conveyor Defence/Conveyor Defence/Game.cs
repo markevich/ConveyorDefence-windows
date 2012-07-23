@@ -45,12 +45,11 @@ namespace Conveyor_Defence
                 );
 
             InitializeCamera();
-            deposit = new RockDeposit(15000f);
-            conveyor3 = new Conveyor(null, "3");
-            conveyor2 = new Conveyor(conveyor3, "2");
-            conveyor1 = new Conveyor(conveyor2, "1");
-            mine = new Mine(conveyor1);
-            deposit.mine = mine;
+            conveyor3 = new Conveyor(1000f, null);
+            conveyor2 = new Conveyor(1000f, conveyor3);
+            conveyor1 = new Conveyor(1000f, conveyor2);
+            mine = new Mine(1000f, conveyor1);
+            deposit = new RockDeposit(5000f, mine);
         }
 
         private void InitializeCamera()
