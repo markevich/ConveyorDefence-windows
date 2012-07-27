@@ -1,8 +1,8 @@
 # TODO: #
 * Implement node map.
-  * Use node map for finding next flow nodes in node.
+  * Use node map for finding next nodes.
 * Implement Draw method for nodes.
-* Find sprite animation library(Need to reflect some others XNA games, such as 'Terraria').
+* Find sprite animation library(Need to look at source code of some others XNA games, such as 'Terraria').
 
 * Draw some sprites.
   * Try to animate that sprites.
