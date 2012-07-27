@@ -5,5 +5,5 @@
 * Find sprite animation library(Need to look at source code of some others XNA games, such as 'Terraria').
 
 * Draw some sprites.
-  * Try to animate that sprites.
+  * Try to animate this sprites.
 * Create 'object pool' for NodeData objects.
