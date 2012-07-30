@@ -7,19 +7,12 @@ namespace Conveyor_Defence
     {
         protected float processCooldown;
         protected float timeSinseLastProcess = 0;
-        protected Node nextNode;
+        public Node NextNode { get; set; }
         protected List<NodeData> nodeDatas;
         public NodeDirection Direction { get; set; }
         protected Node(float outputCooldown)
         {
             this.processCooldown = outputCooldown;
-            nodeDatas = new List<NodeData>();
-        }
-
-        protected Node(float outputCooldown, Node nextNode)
-        {
-            this.processCooldown = outputCooldown;
-            this.nextNode = nextNode;
             nodeDatas = new List<NodeData>();
         }
 
@@ -40,12 +33,12 @@ namespace Conveyor_Defence
         {
             outputsCount++;
             if(nextNodeExists())
-                nextNode.Input(data);
+                NextNode.Input(data);
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            if (hasNodeDatas())
+            if (HasNodeDatas())
             {
                 timeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
                 if (timeSinseLastProcess > processCooldown)
@@ -55,13 +48,13 @@ namespace Conveyor_Defence
             }
         }
 
-        protected virtual bool hasNodeDatas()
+        protected virtual bool HasNodeDatas()
         {
             return nodeDatas.Count > 0;
         }
         protected bool nextNodeExists()
         {
-            return nextNode != null;
+            return NextNode != null;
         }
     }
 }

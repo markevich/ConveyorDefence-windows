@@ -2,7 +2,7 @@
 {
     class Conveyor : Node
     {
-        public Conveyor(float outputCooldown, Node nextNode) : base(outputCooldown, nextNode)
+        public Conveyor(float outputCooldown) : base(outputCooldown)
         {}
        
         protected override void Output(NodeData data)

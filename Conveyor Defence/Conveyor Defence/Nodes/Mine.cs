@@ -2,7 +2,7 @@
 {
     class Mine : Node
     {
-        public Mine(float outputCooldown, Node nextNode) : base(outputCooldown, nextNode)
+        public Mine(float outputCooldown) : base(outputCooldown)
         {}
 
         protected override void Output(NodeData data)

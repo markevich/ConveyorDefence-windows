@@ -110,7 +110,7 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Map\NodeMap.cs" />
     <Compile Include="Nodes\Conveyor.cs" />
-    <Compile Include="Deposites\RockDeposit.cs" />
+    <Compile Include="Nodes\RockDeposit.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Nodes\Node.cs" />
     <Compile Include="Nodes\NodeData.cs" />

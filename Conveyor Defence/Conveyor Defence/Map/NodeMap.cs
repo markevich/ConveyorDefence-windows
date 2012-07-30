@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Conveyor_Defence
 {
@@ -12,7 +13,18 @@ namespace Conveyor_Defence
         {
             Nodes = new Node[100,100];
         }
-
+        public void Update(GameTime gameTime)
+        {
+            foreach (var node in Nodes)
+            {
+                if(node != null)
+                    node.Update(gameTime);
+            }
+        }
+        public void SetNode(Node node, int x, int y)
+        {
+            Nodes[x, y] = node;
+        }
         public List<Node> NextNodes(int x, int y)
         {
             var nodes = new List<Node>();
@@ -47,6 +59,22 @@ namespace Conveyor_Defence
                 siblings.Add(NodeDirection.RightDown, Nodes[x + 1, y + 1]);
             }
             return siblings;
+        }
+        public void UpdateSiblings()
+        {
+            for (int x = 0; x < Nodes.GetLength(0); x++)
+                for (int y = 0; y < Nodes.GetLength(1); y++)
+                {
+                    var node = Nodes[x, y];
+                    if(node == null)
+                        continue;
+
+                    if (node.Direction != NodeDirection.Empty)
+                    {
+                        var nextNodes = NextNodes(x, y);
+                        node.NextNode = nextNodes[0];
+                    }
+                }
         }
     }
 

@@ -4,7 +4,7 @@ namespace Conveyor_Defence.Deposits
 {
     internal class RockDeposit : Node
     {
-        public RockDeposit(float generationTime, Node nextNode) :base(generationTime, nextNode)
+        public RockDeposit(float generationTime) :base(generationTime)
         {}
 
         protected override void Process()
@@ -19,7 +19,7 @@ namespace Conveyor_Defence.Deposits
             System.Diagnostics.Debug.WriteLine("Rock number {0} generated from deposit!", outputsCount);
         }
 
-        protected override bool hasNodeDatas()
+        protected override bool HasNodeDatas()
         {
             return true;
         }

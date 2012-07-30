@@ -16,12 +16,8 @@ namespace Conveyor_Defence
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        TileMap map;
-        private Mine mine;
-        private RockDeposit deposit;
-        private Conveyor conveyor1;
-        private Conveyor conveyor2;
-        private Conveyor conveyor3;
+        private TileMap map;
+        private NodeMap nodeMap;
         public Game()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -45,11 +41,22 @@ namespace Conveyor_Defence
                 );
 
             InitializeCamera();
-            conveyor3 = new Conveyor(1000f, null);
-            conveyor2 = new Conveyor(1000f, conveyor3);
-            conveyor1 = new Conveyor(1000f, conveyor2);
-            mine = new Mine(1000f, conveyor1);
-            deposit = new RockDeposit(5000f, mine);
+            nodeMap = new NodeMap();
+            for (int i = 0; i < 10; i++)
+                for (int j = 0; j < 10; j++)
+                    nodeMap.SetNode(new Conveyor(1000), i, j);
+            
+            var conveyor3 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
+            var conveyor2 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
+            var conveyor1 = new Conveyor(1000f) { Direction = NodeDirection.RightDown };
+            var mine = new Mine(2000f){Direction = NodeDirection.RightDown};
+            var deposit = new RockDeposit(10000f) {Direction = NodeDirection.LeftDown};
+            nodeMap.SetNode(deposit, 3, 4);
+            nodeMap.SetNode(mine, 2, 5);
+            nodeMap.SetNode(conveyor1, 3, 6);
+            nodeMap.SetNode(conveyor2, 3, 7);
+            nodeMap.SetNode(conveyor3, 3, 8);
+            nodeMap.UpdateSiblings();
         }
 
         private void InitializeCamera()
@@ -68,11 +75,7 @@ namespace Conveyor_Defence
         protected override void Update(GameTime gameTime)
         {
             HandleInput();
-            deposit.Update(gameTime);
-            mine.Update(gameTime);
-            conveyor1.Update(gameTime);
-            conveyor2.Update(gameTime);
-            conveyor3.Update(gameTime);
+            nodeMap.Update(gameTime);
             base.Update(gameTime);
         }
 
