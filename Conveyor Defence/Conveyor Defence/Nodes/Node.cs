@@ -8,8 +8,8 @@ namespace Conveyor_Defence
         protected float processCooldown;
         protected float timeSinseLastProcess = 0;
         protected Node nextNode;
-        protected List<NodeData> nodeDatas; 
-
+        protected List<NodeData> nodeDatas;
+        public NodeDirection Direction { get; set; }
         protected Node(float outputCooldown)
         {
             this.processCooldown = outputCooldown;
