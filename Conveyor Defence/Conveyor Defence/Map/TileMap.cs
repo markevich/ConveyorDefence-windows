@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework.Input;
+using Conveyor_Defence.Nodes;
 
 namespace Conveyor_Defence.Map
 {
@@ -14,7 +15,7 @@ namespace Conveyor_Defence.Map
         private const float HeightRowDepthMod = 0.0000001f;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
-
+        public Node[,] Nodes { get; set; } 
         private readonly Texture2D _mouseMap;
         private readonly SpriteFont _tileIndexer; //for debug tiles.
         private readonly Texture2D _tileHighligter;
@@ -40,10 +41,6 @@ namespace Conveyor_Defence.Map
             }
 
             // Create Sample Map Data
-
-            _rows[3].Columns[2].AddTopperTile(10);
-            _rows[4].Columns[2].AddTopperTile(10);
-            _rows[5].Columns[1].AddTopperTile(10);
 
             _rows[3].Columns[2].TileID = 3;
             _rows[3].Columns[3].TileID = 1;
@@ -222,7 +219,7 @@ namespace Conveyor_Defence.Map
                     var tile = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
 
                     tile.Draw(batch, tileIndex, depthOffset, HeightRowDepthMod, depthOffsetY);
-
+                    tile.DrawNode(x, y, Nodes[x, y], batch);
 
 
                     DrawTileIndexes(batch, tileIndex, x, y); //helper method

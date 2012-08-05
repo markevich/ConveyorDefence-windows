@@ -35,7 +35,7 @@ namespace Conveyor_Defence
                 );
 
             InitializeCamera();
-            _nodeMap = new NodeMap();
+            _nodeMap = new NodeMap(_map);
             for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 10; j++)
                     _nodeMap.SetNode(new Conveyor(1000), i, j);

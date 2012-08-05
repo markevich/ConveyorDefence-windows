@@ -6,11 +6,14 @@ namespace Conveyor_Defence.Map
 {
     class NodeMap
     {
+        private readonly TileMap _map;
         private Node[,] Nodes { get; set; }
-        public NodeMap()
+        public NodeMap(TileMap map)
         {
+            _map = map;
             Nodes = new Node[100,100];
         }
+
         public void Update(GameTime gameTime)
         {
             foreach (var node in Nodes)
@@ -23,7 +26,8 @@ namespace Conveyor_Defence.Map
         {
             Nodes[x, y] = node;
         }
-        public List<Node> NextNodes(int x, int y)
+
+        private List<Node> NextNodes(int x, int y)
         {
             var nodes = new List<Node>();
             if (Nodes[x, y].Direction == NodeDirection.Empty)
@@ -67,12 +71,13 @@ namespace Conveyor_Defence.Map
                     if(node == null)
                         continue;
 
-                    if (node.Direction != NodeDirection.Empty)
-                    {
-                        var nextNodes = NextNodes(x, y);
-                        node.NextNode = nextNodes[0];
-                    }
+                    if (node.Direction == NodeDirection.Empty) continue;
+
+                    var nextNodes = NextNodes(x, y);
+                    node.NextNode = nextNodes[0];
                 }
+            _map.Nodes = Nodes;
+
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Conveyor_Defence.Map;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Conveyor_Defence.Nodes
 {
@@ -11,6 +12,7 @@ namespace Conveyor_Defence.Nodes
         public Node NextNode { get; set; }
         private readonly List<NodeData> _nodeDatas;
         public NodeDirection Direction { get; set; }
+        public int TileID = 10;
         protected Node(float outputCooldown)
         {
             _processCooldown = outputCooldown;
@@ -56,6 +58,13 @@ namespace Conveyor_Defence.Nodes
         private bool NextNodeExists()
         {
             return NextNode != null;
+        }
+
+        public void Draw(SpriteBatch batch)
+        {
+            batch.Begin();
+
+            batch.End();
         }
     }
 }

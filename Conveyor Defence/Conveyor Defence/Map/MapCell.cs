@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Conveyor_Defence.Nodes;
 
 namespace Conveyor_Defence.Map
 {
@@ -43,6 +44,10 @@ namespace Conveyor_Defence.Map
             _topperTiles.Add(tileID);
         }
 
+        private float _lastDepthOffset;
+        private float _lastHeightRowDepthMod;
+        private int _lastHeightRow;
+        private int _lastRowOffset;
         public void Draw(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod, float depthOffsetY)
         {
 
@@ -54,6 +59,10 @@ namespace Conveyor_Defence.Map
             DrawHeightTiles(batch, index, depthOffset, heightRowDepthMod, ref heightRow, rowOffset);
 
             DrawTopperTiles(batch, index, depthOffset, heightRowDepthMod, heightRow, rowOffset);
+            _lastDepthOffset = depthOffset;
+            _lastHeightRowDepthMod = heightRowDepthMod;
+            _lastHeightRow = heightRow;
+            _lastRowOffset = rowOffset;
         }
 
         private void DrawBaseTiles(SpriteBatch batch, Vector2 index, float heightRowDepthMod, int rowOffset, float depthOffsetY)
@@ -119,10 +128,32 @@ namespace Conveyor_Defence.Map
             }
         }
 
+        public void DrawNode(int x, int y, Node node, SpriteBatch spriteBatch)
+        {
+            if (node == null)
+            {
+                return;
+            }
+            var depth = CalculateDepth(_lastDepthOffset,_lastHeightRowDepthMod, _lastHeightRow);
+            spriteBatch.Draw(
+                Tile.TileSetTexture,
+                Camera.WorldToScreen(
+                    new Vector2((x * Tile.TileStepX) + _lastRowOffset, y * Tile.TileStepY)),
+                Tile.GetSourceRectangle(node.TileID),
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                1.0f,
+                SpriteEffects.None,
+                depth
+                );
+        }
 
         private float CalculateDepth(float depthOffset, float heightRowDepthMod, int heightRow)
         {
             return depthOffset - (heightRow*heightRowDepthMod);
         }
+
+        
     }
 }
