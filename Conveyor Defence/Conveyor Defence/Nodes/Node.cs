@@ -12,7 +12,26 @@ namespace Conveyor_Defence.Nodes
         public Node NextNode { get; set; }
         private readonly List<NodeData> _nodeDatas;
         public NodeDirection Direction { get; set; }
-        public int TileID = 10;
+        public int LeftDownTileID;
+        public int RightDownTileID;
+        public int GetTile{
+            get
+            {
+                switch (Direction)
+                {
+                        case NodeDirection.LeftDown:
+                        {
+                            return LeftDownTileID;
+
+                        }
+                        case NodeDirection.RightDown:
+                        {
+                            return RightDownTileID;
+                        }
+                }
+                return 0;
+            }
+        }
         protected Node(float outputCooldown)
         {
             _processCooldown = outputCooldown;

@@ -3,7 +3,10 @@
     class Mine : Node
     {
         public Mine(float outputCooldown) : base(outputCooldown)
-        {}
+        {
+            this.LeftDownTileID = 13;
+            this.RightDownTileID = 13;
+        }
 
         protected override void Output(NodeData data)
         {

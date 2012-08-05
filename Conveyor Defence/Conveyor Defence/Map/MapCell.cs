@@ -130,7 +130,7 @@ namespace Conveyor_Defence.Map
 
         public void DrawNode(int x, int y, Node node, SpriteBatch spriteBatch)
         {
-            if (node == null)
+            if (node == null || node.GetTile == 0)
             {
                 return;
             }
@@ -139,7 +139,7 @@ namespace Conveyor_Defence.Map
                 Tile.TileSetTexture,
                 Camera.WorldToScreen(
                     new Vector2((x * Tile.TileStepX) + _lastRowOffset, y * Tile.TileStepY)),
-                Tile.GetSourceRectangle(node.TileID),
+                Tile.GetSourceRectangle(node.GetTile),
                 Color.White,
                 0.0f,
                 Vector2.Zero,

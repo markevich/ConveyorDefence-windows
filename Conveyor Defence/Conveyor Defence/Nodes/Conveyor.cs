@@ -3,7 +3,10 @@
     class Conveyor : Node
     {
         public Conveyor(float outputCooldown) : base(outputCooldown)
-        {}
+        {
+            this.LeftDownTileID = 10;
+            this.RightDownTileID = 11;
+        }
        
         protected override void Output(NodeData data)
         {

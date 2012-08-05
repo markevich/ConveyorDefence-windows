@@ -5,7 +5,10 @@ namespace Conveyor_Defence.Nodes
     internal class RockDeposit : Node
     {
         public RockDeposit(float generationTime) :base(generationTime)
-        {}
+        {
+            this.LeftDownTileID = 12;
+            this.RightDownTileID = 22;
+        }
 
         protected override void Process()
         {
