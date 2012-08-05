@@ -4,128 +4,121 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework.Input;
 
-namespace Conveyor_Defence
+namespace Conveyor_Defence.Map
 {
     class TileMap
     {
-        public List<MapRow> Rows = new List<MapRow>();
-        public int MapWidth = 20;
-        public int MapHeight = 35;
-        private const float heightRowDepthMod = 0.0000001f;
-        public int BaseOffsetX = -32;
-        public int BaseOffsetY = -64;
+        private readonly List<MapRow> _rows = new List<MapRow>();
+        public const int MapWidth = 20;
+        public const int MapHeight = 35;
+        private const float HeightRowDepthMod = 0.0000001f;
+        public const int BaseOffsetX = -32;
+        public const int BaseOffsetY = -64;
 
-        private readonly Texture2D mouseMap;
-        private readonly SpriteFont tileIndexer; //for debug tiles.
-        private Texture2D tileHighligter;
+        private readonly Texture2D _mouseMap;
+        private readonly SpriteFont _tileIndexer; //for debug tiles.
+        private readonly Texture2D _tileHighligter;
 
-        private float maxdepth;
-        private readonly Random rnd;
+        private readonly float _maxdepth;
+        private readonly Random _rnd;
 
         public TileMap(Texture2D mouseMap, SpriteFont tileIndexer,  Texture2D tileHighligter)
         {
-            rnd = new Random();
-            this.mouseMap = mouseMap;
-            this.tileIndexer = tileIndexer;
-            this.tileHighligter = tileHighligter;
-            maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
+            _rnd = new Random();
+            _mouseMap = mouseMap;
+            _tileIndexer = tileIndexer;
+            _tileHighligter = tileHighligter;
+            _maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
             for (int y = 0; y < MapHeight; y++)
             {
-                MapRow thisRow = new MapRow();
+                var thisRow = new MapRow();
                 for (int x = 0; x < MapWidth; x++)
                 {
-                    thisRow.Columns.Add(new MapCell(rnd.Next(0,7)));
+                    thisRow.Columns.Add(new MapCell(_rnd.Next(0,7)));
                 }
-                Rows.Add(thisRow);
+                _rows.Add(thisRow);
             }
 
             // Create Sample Map Data
 
-            Rows[3].Columns[2].AddTopperTile(10);
-            Rows[4].Columns[2].AddTopperTile(10);
-            Rows[5].Columns[1].AddTopperTile(10);
+            _rows[3].Columns[2].AddTopperTile(10);
+            _rows[4].Columns[2].AddTopperTile(10);
+            _rows[5].Columns[1].AddTopperTile(10);
 
-            Rows[3].Columns[2].TileID = 3;
-            Rows[3].Columns[3].TileID = 1;
-            Rows[3].Columns[4].TileID = 1;
-            Rows[3].Columns[5].TileID = 2;
-            Rows[3].Columns[6].TileID = 2;
-            Rows[3].Columns[7].TileID = 2;
+            _rows[3].Columns[2].TileID = 3;
+            _rows[3].Columns[3].TileID = 1;
+            _rows[3].Columns[4].TileID = 1;
+            _rows[3].Columns[5].TileID = 2;
+            _rows[3].Columns[6].TileID = 2;
+            _rows[3].Columns[7].TileID = 2;
 
-            Rows[4].Columns[2].TileID = 3;
-            Rows[4].Columns[3].TileID = 1;
-            Rows[4].Columns[4].TileID = 1;
-            Rows[4].Columns[5].TileID = 2;
-            Rows[4].Columns[6].TileID = 2;
-            Rows[4].Columns[7].TileID = 2;
+            _rows[4].Columns[2].TileID = 3;
+            _rows[4].Columns[3].TileID = 1;
+            _rows[4].Columns[4].TileID = 1;
+            _rows[4].Columns[5].TileID = 2;
+            _rows[4].Columns[6].TileID = 2;
+            _rows[4].Columns[7].TileID = 2;
 
-            Rows[5].Columns[2].TileID = 3;
-            Rows[5].Columns[3].TileID = 1;
-            Rows[5].Columns[4].TileID = 1;
-            Rows[5].Columns[5].TileID = 2;
-            Rows[5].Columns[6].TileID = 2;
-            Rows[5].Columns[7].TileID = 2;
+            _rows[5].Columns[2].TileID = 3;
+            _rows[5].Columns[3].TileID = 1;
+            _rows[5].Columns[4].TileID = 1;
+            _rows[5].Columns[5].TileID = 2;
+            _rows[5].Columns[6].TileID = 2;
+            _rows[5].Columns[7].TileID = 2;
 
-            Rows[3].Columns[5].AddBaseTile(30);
-            Rows[4].Columns[5].AddBaseTile(27);
-            Rows[5].Columns[5].AddBaseTile(28);
+            _rows[3].Columns[5].AddBaseTile(30);
+            _rows[4].Columns[5].AddBaseTile(27);
+            _rows[5].Columns[5].AddBaseTile(28);
 
-            Rows[3].Columns[6].AddBaseTile(25);
-            Rows[5].Columns[6].AddBaseTile(24);
+            _rows[3].Columns[6].AddBaseTile(25);
+            _rows[5].Columns[6].AddBaseTile(24);
 
-            Rows[3].Columns[7].AddBaseTile(31);
-            Rows[4].Columns[7].AddBaseTile(26);
-            Rows[5].Columns[7].AddBaseTile(29);
+            _rows[3].Columns[7].AddBaseTile(31);
+            _rows[4].Columns[7].AddBaseTile(26);
+            _rows[5].Columns[7].AddBaseTile(29);
 
-            Rows[4].Columns[6].AddBaseTile(104);
+            _rows[4].Columns[6].AddBaseTile(104);
 
-            Rows[16].Columns[4].AddHeightTile(54);
+            _rows[16].Columns[4].AddHeightTile(54);
 
-            Rows[17].Columns[3].AddHeightTile(54);
+            _rows[17].Columns[3].AddHeightTile(54);
 
-            Rows[15].Columns[3].AddHeightTile(54);
-            Rows[16].Columns[3].AddHeightTile(53);
+            _rows[15].Columns[3].AddHeightTile(54);
+            _rows[16].Columns[3].AddHeightTile(53);
 
-            Rows[15].Columns[4].AddHeightTile(54);
-            Rows[15].Columns[4].AddHeightTile(54);
-            Rows[15].Columns[4].AddHeightTile(51);
+            _rows[15].Columns[4].AddHeightTile(54);
+            _rows[15].Columns[4].AddHeightTile(54);
+            _rows[15].Columns[4].AddHeightTile(51);
 
-            Rows[18].Columns[3].AddHeightTile(51);
-            Rows[19].Columns[3].AddHeightTile(50);
-            Rows[18].Columns[4].AddHeightTile(55);
+            _rows[18].Columns[3].AddHeightTile(51);
+            _rows[19].Columns[3].AddHeightTile(50);
+            _rows[18].Columns[4].AddHeightTile(55);
 
-            Rows[14].Columns[4].AddHeightTile(54);
+            _rows[14].Columns[4].AddHeightTile(54);
 
-            Rows[14].Columns[5].AddHeightTile(62);
-            Rows[14].Columns[5].AddHeightTile(61);
-            Rows[14].Columns[5].AddHeightTile(63);
+            _rows[14].Columns[5].AddHeightTile(62);
+            _rows[14].Columns[5].AddHeightTile(61);
+            _rows[14].Columns[5].AddHeightTile(63);
 
-            Rows[17].Columns[4].AddTopperTile(114);
-            Rows[16].Columns[5].AddTopperTile(115);
-            Rows[14].Columns[4].AddTopperTile(125);
-            Rows[15].Columns[5].AddTopperTile(91);
-            Rows[16].Columns[6].AddTopperTile(94);
+            _rows[17].Columns[4].AddTopperTile(114);
+            _rows[16].Columns[5].AddTopperTile(115);
+            _rows[14].Columns[4].AddTopperTile(125);
+            _rows[15].Columns[5].AddTopperTile(91);
+            _rows[16].Columns[6].AddTopperTile(94);
 
-            Rows[15].Columns[5].Walkable = false;
-            Rows[16].Columns[6].Walkable = false;
 
-            Rows[12].Columns[9].AddHeightTile(34);
-            Rows[11].Columns[9].AddHeightTile(34);
-            Rows[11].Columns[8].AddHeightTile(34);
-            Rows[10].Columns[9].AddHeightTile(34);
+            _rows[12].Columns[9].AddHeightTile(34);
+            _rows[11].Columns[9].AddHeightTile(34);
+            _rows[11].Columns[8].AddHeightTile(34);
+            _rows[10].Columns[9].AddHeightTile(34);
 
-            Rows[12].Columns[8].AddTopperTile(31);
-            Rows[12].Columns[8].SlopeMap = 0;
-            Rows[13].Columns[8].AddTopperTile(31);
-            Rows[13].Columns[8].SlopeMap = 0;
+            _rows[12].Columns[8].AddTopperTile(31);
+            _rows[13].Columns[8].AddTopperTile(31);
 
-            Rows[12].Columns[10].AddTopperTile(32);
-            Rows[12].Columns[10].SlopeMap = 1;
-            Rows[13].Columns[9].AddTopperTile(32);
-            Rows[13].Columns[9].SlopeMap = 1;
+            _rows[12].Columns[10].AddTopperTile(32);
+            _rows[13].Columns[9].AddTopperTile(32);
 
-            Rows[14].Columns[9].AddTopperTile(30);
-            Rows[14].Columns[9].SlopeMap = 4;
+            _rows[14].Columns[9].AddTopperTile(30);
             // End Create Sample Map Data
         }
 
@@ -137,51 +130,51 @@ namespace Conveyor_Defence
 
         public Point WorldToMapCell(Point worldPoint, out Point localPoint)
         {
-            Point mapCell = new Point(
-               (int)(worldPoint.X / mouseMap.Width),
-               ((int)(worldPoint.Y / mouseMap.Height)) * 2
+            var mapCell = new Point(
+               worldPoint.X / _mouseMap.Width,
+               worldPoint.Y / _mouseMap.Height * 2
                );
 
-            int localPointX = worldPoint.X % mouseMap.Width;
-            int localPointY = worldPoint.Y % mouseMap.Height;
+            int localPointX = worldPoint.X % _mouseMap.Width;
+            int localPointY = worldPoint.Y % _mouseMap.Height;
 
             int dx = 0;
             int dy = 0;
 
-            uint[] myUint = new uint[1];
+            var myUint = new uint[1];
 
-            if (new Rectangle(0, 0, mouseMap.Width, mouseMap.Height).Contains(localPointX, localPointY))
+            if (new Rectangle(0, 0, _mouseMap.Width, _mouseMap.Height).Contains(localPointX, localPointY))
             {
-                mouseMap.GetData(0, new Rectangle(localPointX, localPointY, 1, 1), myUint, 0, 1);
+                _mouseMap.GetData(0, new Rectangle(localPointX, localPointY, 1, 1), myUint, 0, 1);
 
                 if (myUint[0] == 0xFF0000FF) // Red
                 {
                     dx = -1;
                     dy = -1;
-                    localPointX = localPointX + (mouseMap.Width / 2);
-                    localPointY = localPointY + (mouseMap.Height / 2);
+                    localPointX = localPointX + (_mouseMap.Width / 2);
+                    localPointY = localPointY + (_mouseMap.Height / 2);
                 }
 
                 if (myUint[0] == 0xFF00FF00) // Green
                 {
                     dx = -1;
-                    localPointX = localPointX + (mouseMap.Width / 2);
+                    localPointX = localPointX + (_mouseMap.Width / 2);
                     dy = 1;
-                    localPointY = localPointY - (mouseMap.Height / 2);
+                    localPointY = localPointY - (_mouseMap.Height / 2);
                 }
 
                 if (myUint[0] == 0xFF00FFFF) // Yellow
                 {
                     dy = -1;
-                    localPointX = localPointX - (mouseMap.Width / 2);
-                    localPointY = localPointY + (mouseMap.Height / 2);
+                    localPointX = localPointX - (_mouseMap.Width / 2);
+                    localPointY = localPointY + (_mouseMap.Height / 2);
                 }
 
                 if (myUint[0] == 0xFFFF0000) // Blue
                 {
                     dy = +1;
-                    localPointX = localPointX - (mouseMap.Width / 2);
-                    localPointY = localPointY - (mouseMap.Height / 2);
+                    localPointX = localPointX - (_mouseMap.Width / 2);
+                    localPointY = localPointY - (_mouseMap.Height / 2);
                 }
             }
 
@@ -201,7 +194,7 @@ namespace Conveyor_Defence
         public MapCell GetCellAtWorldPoint(Point worldPoint)
         {
             Point mapPoint = WorldToMapCell(worldPoint);
-            return Rows[mapPoint.Y].Columns[mapPoint.X];
+            return _rows[mapPoint.Y].Columns[mapPoint.X];
         }
 
         public MapCell GetCellAtWorldPoint(Vector2 worldPoint)
@@ -218,17 +211,17 @@ namespace Conveyor_Defence
             float depthOffsetY = 0.9f;
             for (int y = 0; y < MapHeight; y++)
             {
-                depthOffsetY -= heightRowDepthMod;
+                depthOffsetY -= HeightRowDepthMod;
 
                 for (int x = 0; x < MapWidth; x++)
                 {
                     var tileIndex = new Vector2(firstX + x, firstY + y);
-                    float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / maxdepth);
+                    float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxdepth);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
-                    var tile = Rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
+                    var tile = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
 
-                    tile.Draw(batch, tileIndex, depthOffset, heightRowDepthMod, depthOffsetY);
+                    tile.Draw(batch, tileIndex, depthOffset, HeightRowDepthMod, depthOffsetY);
 
 
 
@@ -244,7 +237,8 @@ namespace Conveyor_Defence
             var offsetx = (int) tileoffset.X;
             var offsety = (int) tileoffset.Y;
             var rowoffset = (int)tileIndex.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
-            batch.DrawString(tileIndexer, (tileIndex.X).ToString() + ", " + (tileIndex.Y).ToString(),
+            var index = String.Format("{0},{1}", tileIndex.X, tileIndex.Y);
+            batch.DrawString(_tileIndexer, index,
                              new Vector2((x*Tile.TileStepX) - offsetx + rowoffset + BaseOffsetX + 24,
                                          (y*Tile.TileStepY) - offsety + BaseOffsetY + 48), Color.White, 0f,
                              Vector2.Zero,
@@ -261,7 +255,7 @@ namespace Conveyor_Defence
                 hilightrowOffset = Tile.OddRowXOffset;
 
             batch.Draw(
-                            tileHighligter,
+                            _tileHighligter,
                             Camera.WorldToScreen(
 
                                 new Vector2(

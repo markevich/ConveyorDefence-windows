@@ -2,50 +2,45 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Conveyor_Defence
+namespace Conveyor_Defence.Map
 {
     class MapCell
     {
         public int TileID
         {
-            get { return BaseTiles.Count > 0 ? BaseTiles[0] : 0; }
+            get { return _baseTiles.Count > 0 ? _baseTiles[0] : 0; }
             set
             {
-                if (BaseTiles.Count > 0)
-                    BaseTiles[0] = value;
+                if (_baseTiles.Count > 0)
+                    _baseTiles[0] = value;
                 else
                     AddBaseTile(value);
             }
         }
-        public List<int> BaseTiles = new List<int>();
-        public List<int> HeightTiles = new List<int>();
-        public List<int> TopperTiles = new List<int>();
 
+        private List<int> _baseTiles = new List<int>();
+        private List<int> _heightTiles = new List<int>();
+        private List<int> _topperTiles = new List<int>();
 
-        public bool Walkable { get; set; }
-
-        public int SlopeMap { get; set; }
 
         public MapCell(int tileID)
         {
             TileID = tileID;
-            Walkable = true;
-            SlopeMap = -1;
         }
 
         public void AddBaseTile(int tileID)
         {
-            BaseTiles.Add(tileID);
+            _baseTiles.Add(tileID);
         }
 
         public void AddHeightTile(int tileID)
         {
-            HeightTiles.Add(tileID);
+            _heightTiles.Add(tileID);
         }
 
         public void AddTopperTile(int tileID)
         {
-            TopperTiles.Add(tileID);
+            _topperTiles.Add(tileID);
         }
 
         public void Draw(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod, float depthOffsetY)
@@ -63,7 +58,7 @@ namespace Conveyor_Defence
 
         private void DrawBaseTiles(SpriteBatch batch, Vector2 index, float heightRowDepthMod, int rowOffset, float depthOffsetY)
         {
-            foreach (int tileID in BaseTiles)
+            foreach (int tileID in _baseTiles)
             {
                 depthOffsetY -= heightRowDepthMod;
                 batch.Draw(
@@ -83,10 +78,9 @@ namespace Conveyor_Defence
         private void DrawHeightTiles(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod,
                                     ref int heightRow, int rowOffset)
         {
-            float depth;
-            foreach (int tileID in HeightTiles)
+            foreach (int tileID in _heightTiles)
             {
-                depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
+                var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
                 batch.Draw(
                     Tile.TileSetTexture,
                     Camera.WorldToScreen(
@@ -107,9 +101,8 @@ namespace Conveyor_Defence
         private void DrawTopperTiles(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod, int heightRow,
                                      int rowOffset)
         {
-            float depth;
-            depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
-            foreach (int tileID in TopperTiles)
+            var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
+            foreach (int tileID in _topperTiles)
             {
                 batch.Draw(
                     Tile.TileSetTexture,
@@ -126,8 +119,7 @@ namespace Conveyor_Defence
             }
         }
 
-       
-       
+
         private float CalculateDepth(float depthOffset, float heightRowDepthMod, int heightRow)
         {
             return depthOffset - (heightRow*heightRowDepthMod);

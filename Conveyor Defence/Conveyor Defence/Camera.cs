@@ -4,16 +4,16 @@ namespace Conveyor_Defence
 {
     static class Camera
     {
-        static private Vector2 location = Vector2.Zero;
+        static private Vector2 _location = Vector2.Zero;
         public static Vector2 Location
         {
             get
             {
-                return location;
+                return _location;
             }
-            set
+            private set
             {
-                location = new Vector2(
+                _location = new Vector2(
                     MathHelper.Clamp(value.X, 0f, WorldWidth - ViewWidth),
                     MathHelper.Clamp(value.Y, 0f, WorldHeight - ViewHeight));
             }

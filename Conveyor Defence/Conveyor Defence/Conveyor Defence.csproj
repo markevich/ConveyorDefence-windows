@@ -120,9 +120,6 @@
     <Compile Include="Missiles\Rock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Sprites\FrameAnimation.cs" />
-    <Compile Include="Sprites\MobileSprite.cs" />
-    <Compile Include="Sprites\SpriteAnimation.cs" />
     <Compile Include="Map\Tile.cs" />
     <Compile Include="Map\TileMap.cs" />
   </ItemGroup>

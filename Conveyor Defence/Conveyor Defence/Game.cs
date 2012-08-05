@@ -1,71 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Conveyor_Defence.Map;
+using Conveyor_Defence.Nodes;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-using Conveyor_Defence.Deposits;
 
 namespace Conveyor_Defence
 {
     public class Game : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        private TileMap map;
-        private NodeMap nodeMap;
+        readonly GraphicsDeviceManager _graphics;
+        SpriteBatch _spriteBatch;
+        private TileMap _map;
+        private NodeMap _nodeMap;
         public Game()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-            this.IsMouseVisible = true;
+            IsMouseVisible = true;
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
             Tile.TileSetTexture = Content.Load<Texture2D>(@"Textures\TileSets\tileset");
-            map = new TileMap(
+            _map = new TileMap(
                 Content.Load<Texture2D>(@"Textures\TileSets\mousemap"),
                 Content.Load<SpriteFont>(@"Fonts\Pericles"),
                 Content.Load<Texture2D>(@"Textures\TileSets\highlight")
                 );
 
             InitializeCamera();
-            nodeMap = new NodeMap();
+            _nodeMap = new NodeMap();
             for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 10; j++)
-                    nodeMap.SetNode(new Conveyor(1000), i, j);
+                    _nodeMap.SetNode(new Conveyor(1000), i, j);
             
             var conveyor3 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
             var conveyor2 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
             var conveyor1 = new Conveyor(1000f) { Direction = NodeDirection.RightDown };
             var mine = new Mine(2000f){Direction = NodeDirection.RightDown};
             var deposit = new RockDeposit(10000f) {Direction = NodeDirection.LeftDown};
-            nodeMap.SetNode(deposit, 3, 4);
-            nodeMap.SetNode(mine, 2, 5);
-            nodeMap.SetNode(conveyor1, 3, 6);
-            nodeMap.SetNode(conveyor2, 3, 7);
-            nodeMap.SetNode(conveyor3, 3, 8);
-            nodeMap.UpdateSiblings();
+            _nodeMap.SetNode(deposit, 3, 4);
+            _nodeMap.SetNode(mine, 2, 5);
+            _nodeMap.SetNode(conveyor1, 3, 6);
+            _nodeMap.SetNode(conveyor2, 3, 7);
+            _nodeMap.SetNode(conveyor3, 3, 8);
+            _nodeMap.UpdateSiblings();
         }
 
         private void InitializeCamera()
         {
-            Camera.ViewWidth = graphics.PreferredBackBufferWidth;
-            Camera.ViewHeight = graphics.PreferredBackBufferHeight;
-            Camera.WorldWidth = ((map.MapWidth - 2) * Tile.TileStepX);
-            Camera.WorldHeight = ((map.MapHeight - 2) * Tile.TileStepY);
-            Camera.DisplayOffset = new Vector2(map.BaseOffsetX, map.BaseOffsetY);
+            Camera.ViewWidth = _graphics.PreferredBackBufferWidth;
+            Camera.ViewHeight = _graphics.PreferredBackBufferHeight;
+            Camera.WorldWidth = ((TileMap.MapWidth - 2) * Tile.TileStepX);
+            Camera.WorldHeight = ((TileMap.MapHeight - 2) * Tile.TileStepY);
+            Camera.DisplayOffset = new Vector2(TileMap.BaseOffsetX, TileMap.BaseOffsetY);
         }
 
         protected override void UnloadContent()
@@ -75,7 +69,7 @@ namespace Conveyor_Defence
         protected override void Update(GameTime gameTime)
         {
             HandleInput();
-            nodeMap.Update(gameTime);
+            _nodeMap.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -104,10 +98,10 @@ namespace Conveyor_Defence
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend); ;
-            map.Draw(spriteBatch);
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            _map.Draw(_spriteBatch);
 
-            spriteBatch.End();
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

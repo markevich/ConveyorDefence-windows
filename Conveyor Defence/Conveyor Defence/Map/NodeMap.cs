@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using Conveyor_Defence.Nodes;
 using Microsoft.Xna.Framework;
 
-namespace Conveyor_Defence
+namespace Conveyor_Defence.Map
 {
     class NodeMap
     {

@@ -1,58 +1,59 @@
 ﻿using System.Collections.Generic;
+using Conveyor_Defence.Map;
 using Microsoft.Xna.Framework;
 
-namespace Conveyor_Defence
+namespace Conveyor_Defence.Nodes
 {
     abstract class Node
     {
-        protected float processCooldown;
-        protected float timeSinseLastProcess = 0;
+        private readonly float _processCooldown;
+        protected float TimeSinseLastProcess;
         public Node NextNode { get; set; }
-        protected List<NodeData> nodeDatas;
+        private readonly List<NodeData> _nodeDatas;
         public NodeDirection Direction { get; set; }
         protected Node(float outputCooldown)
         {
-            this.processCooldown = outputCooldown;
-            nodeDatas = new List<NodeData>();
+            _processCooldown = outputCooldown;
+            _nodeDatas = new List<NodeData>();
         }
 
-        public virtual void Input(NodeData data)
+        private void Input(NodeData data)
         {
-            nodeDatas.Add(data);
+            _nodeDatas.Add(data);
         }
         protected virtual void Process()
         {
-            timeSinseLastProcess = 0;
-            var data = nodeDatas[0];
-            nodeDatas.RemoveAt(0);
+            TimeSinseLastProcess = 0;
+            var data = _nodeDatas[0];
+            _nodeDatas.RemoveAt(0);
             Output(data);
         }
 
-        protected int outputsCount = 0;
+        protected int OutputsCount;
         protected virtual void Output(NodeData data)
         {
-            outputsCount++;
-            if(nextNodeExists())
+            OutputsCount++;
+            if(NextNodeExists())
                 NextNode.Input(data);
         }
 
-        public virtual void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            if (HasNodeDatas())
+            if (!HasNodeDatas()) return;
+            
+            TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
+            if (TimeSinseLastProcess > _processCooldown)
             {
-                timeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
-                if (timeSinseLastProcess > processCooldown)
-                {
-                    Process();
-                }
+                Process();
             }
         }
 
         protected virtual bool HasNodeDatas()
         {
-            return nodeDatas.Count > 0;
+            return _nodeDatas.Count > 0;
         }
-        protected bool nextNodeExists()
+
+        private bool NextNodeExists()
         {
             return NextNode != null;
         }

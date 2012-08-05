@@ -1,4 +1,4 @@
-﻿namespace Conveyor_Defence
+﻿namespace Conveyor_Defence.Nodes
 {
     class Mine : Node
     {
@@ -8,7 +8,7 @@
         protected override void Output(NodeData data)
         {
             base.Output(data);
-            System.Diagnostics.Debug.WriteLine(string.Format("Mine produce projectile number {0} !", outputsCount));
+            System.Diagnostics.Debug.WriteLine("Mine produce projectile number {0} !", OutputsCount);
         }
 
     }
