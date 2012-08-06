@@ -6,12 +6,21 @@ namespace Conveyor_Defence.Map
 {
     class NodeMap
     {
+        public static NodeMap Instance { get; private set; }
+        public static void CreateInstance()
+        {
+            Instance = new NodeMap();
+        }
         private readonly TileMap _map;
         private Node[,] Nodes { get; set; }
-        public NodeMap(TileMap map)
+        public NodeMap()
         {
-            _map = map;
             Nodes = new Node[100,100];
+        }
+
+        public Node this[int x, int y]
+        {
+            get { return Nodes[x, y]; }
         }
 
         public void Update(GameTime gameTime)
@@ -76,8 +85,6 @@ namespace Conveyor_Defence.Map
                     var nextNodes = NextNodes(x, y);
                     node.NextNode = nextNodes[0];
                 }
-            _map.Nodes = Nodes;
-
         }
     }
 

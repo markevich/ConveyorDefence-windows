@@ -15,7 +15,6 @@ namespace Conveyor_Defence.Map
         private const float HeightRowDepthMod = 0.0000001f;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
-        public Node[,] Nodes { get; set; } 
         private readonly Texture2D _mouseMap;
         private readonly SpriteFont _tileIndexer; //for debug tiles.
         private readonly Texture2D _tileHighligter;
@@ -212,15 +211,13 @@ namespace Conveyor_Defence.Map
 
                 for (int x = 0; x < MapWidth; x++)
                 {
-                    var tileIndex = new Vector2(firstX + x, firstY + y);
+                    var tileIndex = new Point(firstX + x, firstY + y);
                     float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxdepth);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
                     var tile = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
 
                     tile.Draw(batch, tileIndex, depthOffset, HeightRowDepthMod, depthOffsetY);
-                    tile.DrawNode(x, y, Nodes[x, y], batch);
-
 
                     DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
@@ -228,7 +225,7 @@ namespace Conveyor_Defence.Map
             DrawTileHighLight(batch);
         }
 
-        private void DrawTileIndexes(SpriteBatch batch, Vector2 tileIndex, int x, int y)
+        private void DrawTileIndexes(SpriteBatch batch, Point tileIndex, int x, int y)
         {
             var tileoffset = new Vector2(Camera.Location.X%Tile.TileStepX, Camera.Location.Y%Tile.TileStepY);
             var offsetx = (int) tileoffset.X;
@@ -268,7 +265,7 @@ namespace Conveyor_Defence.Map
                             SpriteEffects.None,
                             0.0f);
         }
-        private bool IsTileOutsideOfMap(Vector2 tileIndex)
+        private bool IsTileOutsideOfMap(Point tileIndex)
         {
             return (tileIndex.X >= MapWidth) || (tileIndex.Y >= MapHeight);
         }

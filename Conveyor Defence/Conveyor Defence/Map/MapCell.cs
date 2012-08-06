@@ -44,11 +44,7 @@ namespace Conveyor_Defence.Map
             _topperTiles.Add(tileID);
         }
 
-        private float _lastDepthOffset;
-        private float _lastHeightRowDepthMod;
-        private int _lastHeightRow;
-        private int _lastRowOffset;
-        public void Draw(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod, float depthOffsetY)
+        public void Draw(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, float depthOffsetY)
         {
 
             int rowOffset = (int)index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
@@ -59,13 +55,36 @@ namespace Conveyor_Defence.Map
             DrawHeightTiles(batch, index, depthOffset, heightRowDepthMod, ref heightRow, rowOffset);
 
             DrawTopperTiles(batch, index, depthOffset, heightRowDepthMod, heightRow, rowOffset);
-            _lastDepthOffset = depthOffset;
-            _lastHeightRowDepthMod = heightRowDepthMod;
-            _lastHeightRow = heightRow;
-            _lastRowOffset = rowOffset;
+
+            DrawNode(batch, index, depthOffset, heightRowDepthMod, heightRow, rowOffset);
+
         }
 
-        private void DrawBaseTiles(SpriteBatch batch, Vector2 index, float heightRowDepthMod, int rowOffset, float depthOffsetY)
+
+        private void DrawNode(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, int heightRow, int rowOffset)
+        {
+            var node = NodeMap.Instance[index.X, index.Y];
+            if (node == null || node.GetTile == 0)
+            {
+                return;
+            }
+            var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
+            batch.Draw(
+                Tile.TileSetTexture,
+                Camera.WorldToScreen(
+                    new Vector2((index.X * Tile.TileStepX) + rowOffset, index.Y * Tile.TileStepY)),
+                Tile.GetSourceRectangle(node.GetTile),
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                1.0f,
+                SpriteEffects.None,
+                depth
+                );
+
+        }
+
+        private void DrawBaseTiles(SpriteBatch batch, Point index, float heightRowDepthMod, int rowOffset, float depthOffsetY)
         {
             foreach (int tileID in _baseTiles)
             {
@@ -84,7 +103,7 @@ namespace Conveyor_Defence.Map
             }
         }
 
-        private void DrawHeightTiles(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod,
+        private void DrawHeightTiles(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod,
                                     ref int heightRow, int rowOffset)
         {
             foreach (int tileID in _heightTiles)
@@ -107,7 +126,7 @@ namespace Conveyor_Defence.Map
             }
         }
 
-        private void DrawTopperTiles(SpriteBatch batch, Vector2 index, float depthOffset, float heightRowDepthMod, int heightRow,
+        private void DrawTopperTiles(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, int heightRow,
                                      int rowOffset)
         {
             var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
@@ -128,26 +147,6 @@ namespace Conveyor_Defence.Map
             }
         }
 
-        public void DrawNode(int x, int y, Node node, SpriteBatch spriteBatch)
-        {
-            if (node == null || node.GetTile == 0)
-            {
-                return;
-            }
-            var depth = CalculateDepth(_lastDepthOffset,_lastHeightRowDepthMod, _lastHeightRow);
-            spriteBatch.Draw(
-                Tile.TileSetTexture,
-                Camera.WorldToScreen(
-                    new Vector2((x * Tile.TileStepX) + _lastRowOffset, y * Tile.TileStepY)),
-                Tile.GetSourceRectangle(node.GetTile),
-                Color.White,
-                0.0f,
-                Vector2.Zero,
-                1.0f,
-                SpriteEffects.None,
-                depth
-                );
-        }
 
         private float CalculateDepth(float depthOffset, float heightRowDepthMod, int heightRow)
         {

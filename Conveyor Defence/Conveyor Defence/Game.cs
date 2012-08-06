@@ -11,7 +11,6 @@ namespace Conveyor_Defence
         readonly GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
         private TileMap _map;
-        private NodeMap _nodeMap;
         public Game()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -35,7 +34,7 @@ namespace Conveyor_Defence
                 );
 
             InitializeCamera();
-            _nodeMap = new NodeMap(_map);
+            NodeMap.CreateInstance();
             //for (int i = 0; i < 10; i++)
             //    for (int j = 0; j < 10; j++)
             //        _nodeMap.SetNode(new Conveyor(1000), i, j);
@@ -45,12 +44,13 @@ namespace Conveyor_Defence
             var conveyor1 = new Conveyor(1000f) { Direction = NodeDirection.RightDown };
             var mine = new Mine(2000f){Direction = NodeDirection.RightDown};
             var deposit = new RockDeposit(10000f) {Direction = NodeDirection.LeftDown};
-            _nodeMap.SetNode(deposit, 3, 4);
-            _nodeMap.SetNode(mine, 2, 5);
-            _nodeMap.SetNode(conveyor1, 3, 6);
-            _nodeMap.SetNode(conveyor2, 3, 7);
-            _nodeMap.SetNode(conveyor3, 3, 8);
-            _nodeMap.UpdateSiblings();
+            var nodeMap = NodeMap.Instance;
+            nodeMap.SetNode(deposit, 3, 4);
+            nodeMap.SetNode(mine, 2, 5);
+            nodeMap.SetNode(conveyor1, 3, 6);
+            nodeMap.SetNode(conveyor2, 3, 7);
+            nodeMap.SetNode(conveyor3, 3, 8);
+            nodeMap.UpdateSiblings();
         }
 
         private void InitializeCamera()
@@ -69,7 +69,7 @@ namespace Conveyor_Defence
         protected override void Update(GameTime gameTime)
         {
             HandleInput();
-            _nodeMap.Update(gameTime);
+            NodeMap.Instance.Update(gameTime);
             base.Update(gameTime);
         }
 
