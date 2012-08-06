@@ -12,7 +12,6 @@ namespace Conveyor_Defence.Map
         private readonly List<MapRow> _rows = new List<MapRow>();
         public const int MapWidth = 20;
         public const int MapHeight = 35;
-        private const float HeightRowDepthMod = 0.0000001f;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
         private readonly Texture2D _mouseMap;
@@ -207,7 +206,7 @@ namespace Conveyor_Defence.Map
             float depthOffsetY = 0.9f;
             for (int y = 0; y < MapHeight; y++)
             {
-                depthOffsetY -= HeightRowDepthMod;
+                depthOffsetY -= Tile.DepthModifier;
 
                 for (int x = 0; x < MapWidth; x++)
                 {
@@ -215,11 +214,11 @@ namespace Conveyor_Defence.Map
                     float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxdepth);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
-                    var tile = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
+                    var cell = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
 
-                    tile.Draw(batch, tileIndex, depthOffset, HeightRowDepthMod, depthOffsetY);
+                    cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
 
-                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);

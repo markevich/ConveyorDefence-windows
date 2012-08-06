@@ -109,15 +109,15 @@
   <ItemGroup>
     <Compile Include="Camera.cs" />
     <Compile Include="Map\NodeMap.cs" />
+    <Compile Include="NodesData\Rock.cs" />
     <Compile Include="Nodes\Conveyor.cs" />
     <Compile Include="Nodes\RockDeposit.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Nodes\Node.cs" />
-    <Compile Include="Nodes\NodeData.cs" />
+    <Compile Include="NodesData\NodeData.cs" />
     <Compile Include="Map\MapCell.cs" />
     <Compile Include="Map\MapRow.cs" />
     <Compile Include="Nodes\Mine.cs" />
-    <Compile Include="Missiles\Rock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Map\Tile.cs" />

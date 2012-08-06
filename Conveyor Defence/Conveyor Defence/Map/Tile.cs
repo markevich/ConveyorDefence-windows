@@ -12,6 +12,7 @@ namespace Conveyor_Defence.Map
         public const int TileStepY = 16;
         public const int OddRowXOffset = 32;
         public const int HeightTileOffset = 32;
+        public const float DepthModifier = 0.0000001f;
 
         static public Rectangle GetSourceRectangle(int tileIndex)
         {

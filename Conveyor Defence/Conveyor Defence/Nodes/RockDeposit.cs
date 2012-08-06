@@ -1,4 +1,6 @@
-﻿using Conveyor_Defence.Missiles;
+﻿using Conveyor_Defence.NodesData;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Conveyor_Defence.Nodes
 {
@@ -7,13 +9,13 @@ namespace Conveyor_Defence.Nodes
         public RockDeposit(float generationTime) :base(generationTime)
         {
             this.LeftDownTileID = 12;
-            this.RightDownTileID = 22;
+            this.RightDownTileID = 12;
         }
 
         protected override void Process()
         {
             TimeSinseLastProcess = 0;
-            var data = new Rock();
+            var data = new Rock {LeftDownTileID = 14, RightDownTileID = 14};
             Output(data);
         }
         protected override void Output(NodeData data)
@@ -27,5 +29,7 @@ namespace Conveyor_Defence.Nodes
             return true;
         }
 
+        public override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
+        {}
     }
 }

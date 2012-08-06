@@ -11,7 +11,6 @@ namespace Conveyor_Defence.Map
         {
             Instance = new NodeMap();
         }
-        private readonly TileMap _map;
         private Node[,] Nodes { get; set; }
         public NodeMap()
         {
@@ -53,8 +52,6 @@ namespace Conveyor_Defence.Map
         private Dictionary<NodeDirection, Node> Siblings(int x, int y)
         {
             var siblings = new Dictionary<NodeDirection, Node>();
-            if(x > 9 || y > 9)
-                return siblings;
             if(y % 2 == 0)
             {
                 siblings.Add(NodeDirection.LeftUp, Nodes[x - 1, y - 1]);
@@ -83,6 +80,7 @@ namespace Conveyor_Defence.Map
                     if (node.Direction == NodeDirection.Empty) continue;
 
                     var nextNodes = NextNodes(x, y);
+                    if(nextNodes.Count == 0) continue;
                     node.NextNode = nextNodes[0];
                 }
         }

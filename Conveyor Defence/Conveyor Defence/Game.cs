@@ -39,17 +39,44 @@ namespace Conveyor_Defence
             //    for (int j = 0; j < 10; j++)
             //        _nodeMap.SetNode(new Conveyor(1000), i, j);
             
-            var conveyor3 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
-            var conveyor2 = new Conveyor(1000f){Direction = NodeDirection.LeftDown};
-            var conveyor1 = new Conveyor(1000f) { Direction = NodeDirection.RightDown };
-            var mine = new Mine(2000f){Direction = NodeDirection.RightDown};
-            var deposit = new RockDeposit(10000f) {Direction = NodeDirection.LeftDown};
             var nodeMap = NodeMap.Instance;
-            nodeMap.SetNode(deposit, 3, 4);
-            nodeMap.SetNode(mine, 2, 5);
-            nodeMap.SetNode(conveyor1, 3, 6);
-            nodeMap.SetNode(conveyor2, 3, 7);
-            nodeMap.SetNode(conveyor3, 3, 8);
+            nodeMap.SetNode(new RockDeposit(7500f) {Direction = NodeDirection.LeftDown}, 3, 4);
+            nodeMap.SetNode(new Mine(2000f){Direction = NodeDirection.RightDown}, 2, 5);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 3, 6);
+            nodeMap.SetNode(new Conveyor(1000f){Direction = NodeDirection.LeftDown}, 3, 7);
+            nodeMap.SetNode(new Conveyor(1000f){Direction = NodeDirection.LeftDown}, 3, 8);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 2, 9);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 2, 10);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 1, 11);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 1, 12);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 1, 13);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 2, 14);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 2, 15);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 2, 16);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 1, 17);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 2, 18);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 2, 19);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 3, 20);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 3, 21);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 4, 22);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 4, 23);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.RightDown }, 5, 24);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5, 25);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5, 26);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 4, 27);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 4, 28);
+
+            nodeMap.SetNode(new RockDeposit(6000) { Direction = NodeDirection.RightDown }, 8, 22);
+            nodeMap.SetNode(new Mine(2000f) { Direction = NodeDirection.LeftDown }, 8, 23);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 8, 24);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 7, 25);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 7, 26);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 6, 27);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 6, 28);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5, 29);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5, 30);
+
+
             nodeMap.UpdateSiblings();
         }
 

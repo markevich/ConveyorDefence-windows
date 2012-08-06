@@ -44,51 +44,42 @@ namespace Conveyor_Defence.Map
             _topperTiles.Add(tileID);
         }
 
-        public void Draw(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, float depthOffsetY)
+        public void Draw(SpriteBatch batch, Point index, float depthOffset, float depthOffsetY)
         {
 
             int rowOffset = (int)index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
             int heightRow = 0;
 
-            DrawBaseTiles(batch, index, heightRowDepthMod, rowOffset, depthOffsetY);
+            DrawBaseTiles(batch, index, rowOffset, depthOffsetY);
 
-            DrawHeightTiles(batch, index, depthOffset, heightRowDepthMod, ref heightRow, rowOffset);
+            DrawHeightTiles(batch, index, depthOffset, ref heightRow, rowOffset);
 
-            DrawTopperTiles(batch, index, depthOffset, heightRowDepthMod, heightRow, rowOffset);
+            DrawTopperTiles(batch, index, depthOffset, heightRow, rowOffset);
 
-            DrawNode(batch, index, depthOffset, heightRowDepthMod, heightRow, rowOffset);
+            DrawNode(batch, index, depthOffset, heightRow, rowOffset);
 
         }
 
 
-        private void DrawNode(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, int heightRow, int rowOffset)
+        private void DrawNode(SpriteBatch batch, Point index, float depthOffset, int heightRow, int rowOffset)
         {
             var node = NodeMap.Instance[index.X, index.Y];
-            if (node == null || node.GetTile == 0)
+            if (node == null)
             {
                 return;
             }
-            var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
-            batch.Draw(
-                Tile.TileSetTexture,
-                Camera.WorldToScreen(
-                    new Vector2((index.X * Tile.TileStepX) + rowOffset, index.Y * Tile.TileStepY)),
-                Tile.GetSourceRectangle(node.GetTile),
-                Color.White,
-                0.0f,
-                Vector2.Zero,
-                1.0f,
-                SpriteEffects.None,
-                depth
-                );
+            var depth = CalculateDepth(depthOffset, heightRow);
+            var position = Camera.WorldToScreen(
+                new Vector2((index.X*Tile.TileStepX) + rowOffset, index.Y*Tile.TileStepY));
+            node.Draw(batch, position, depth);
 
         }
 
-        private void DrawBaseTiles(SpriteBatch batch, Point index, float heightRowDepthMod, int rowOffset, float depthOffsetY)
+        private void DrawBaseTiles(SpriteBatch batch, Point index, int rowOffset, float depthOffsetY)
         {
             foreach (int tileID in _baseTiles)
             {
-                depthOffsetY -= heightRowDepthMod;
+                depthOffsetY -= Tile.DepthModifier;
                 batch.Draw(
                     Tile.TileSetTexture,
                     Camera.WorldToScreen(
@@ -103,12 +94,11 @@ namespace Conveyor_Defence.Map
             }
         }
 
-        private void DrawHeightTiles(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod,
-                                    ref int heightRow, int rowOffset)
+        private void DrawHeightTiles(SpriteBatch batch, Point index, float depthOffset, ref int heightRow, int rowOffset)
         {
             foreach (int tileID in _heightTiles)
             {
-                var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
+                var depth = CalculateDepth(depthOffset, heightRow);
                 batch.Draw(
                     Tile.TileSetTexture,
                     Camera.WorldToScreen(
@@ -126,10 +116,10 @@ namespace Conveyor_Defence.Map
             }
         }
 
-        private void DrawTopperTiles(SpriteBatch batch, Point index, float depthOffset, float heightRowDepthMod, int heightRow,
+        private void DrawTopperTiles(SpriteBatch batch, Point index, float depthOffset, int heightRow,
                                      int rowOffset)
         {
-            var depth = CalculateDepth(depthOffset, heightRowDepthMod, heightRow);
+            var depth = CalculateDepth(depthOffset, heightRow);
             foreach (int tileID in _topperTiles)
             {
                 batch.Draw(
@@ -148,9 +138,9 @@ namespace Conveyor_Defence.Map
         }
 
 
-        private float CalculateDepth(float depthOffset, float heightRowDepthMod, int heightRow)
+        private float CalculateDepth(float depthOffset, int heightRow)
         {
-            return depthOffset - (heightRow*heightRowDepthMod);
+            return depthOffset - (heightRow * Tile.DepthModifier);
         }
 
         

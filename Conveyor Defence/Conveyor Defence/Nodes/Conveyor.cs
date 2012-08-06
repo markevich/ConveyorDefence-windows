@@ -1,4 +1,6 @@
-﻿namespace Conveyor_Defence.Nodes
+﻿using Conveyor_Defence.NodesData;
+
+namespace Conveyor_Defence.Nodes
 {
     class Conveyor : Node
     {

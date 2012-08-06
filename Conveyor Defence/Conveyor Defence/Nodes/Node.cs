@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Conveyor_Defence.Map;
+using Conveyor_Defence.NodesData;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -14,7 +15,7 @@ namespace Conveyor_Defence.Nodes
         public NodeDirection Direction { get; set; }
         public int LeftDownTileID;
         public int RightDownTileID;
-        public int GetTile{
+        private int TileID{
             get
             {
                 switch (Direction)
@@ -45,7 +46,7 @@ namespace Conveyor_Defence.Nodes
         protected virtual void Process()
         {
             TimeSinseLastProcess = 0;
-            var data = _nodeDatas[0];
+            var data = GetCurrentNodeData();
             _nodeDatas.RemoveAt(0);
             Output(data);
         }
@@ -74,6 +75,11 @@ namespace Conveyor_Defence.Nodes
             return _nodeDatas.Count > 0;
         }
 
+        private NodeData GetCurrentNodeData()
+        {
+            return _nodeDatas[0];
+        }
+
         private bool NextNodeExists()
         {
             return NextNode != null;
@@ -84,6 +90,42 @@ namespace Conveyor_Defence.Nodes
             batch.Begin();
 
             batch.End();
+        }
+
+        public virtual void Draw(SpriteBatch batch, Vector2 position, float depth)
+        {
+            if (TileID == 0) return;
+            batch.Draw(
+                Tile.TileSetTexture,
+                position,
+                Tile.GetSourceRectangle(TileID),
+                Color.White,
+                0.0f,
+                Vector2.Zero,
+                1.0f,
+                SpriteEffects.None,
+                depth
+                );
+            
+            DrawNodeData(batch, position, depth);
+           
+        }
+        public virtual void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
+        {
+            if (!HasNodeDatas()) return;
+            var nodeDataID = GetCurrentNodeData().LeftDownTileID;
+            nodePosition = new Vector2(nodePosition.X , nodePosition.Y - Tile.TileHeight/4+2);
+            batch.Draw(
+               Tile.TileSetTexture,
+               nodePosition,
+               Tile.GetSourceRectangle(nodeDataID),
+               Color.White,
+               0.0f,
+               Vector2.Zero,
+               1.0f,
+               SpriteEffects.None,
+               depth - Tile.DepthModifier
+               );
         }
     }
 }
