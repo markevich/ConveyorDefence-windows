@@ -214,7 +214,7 @@ namespace Conveyor_Defence.Map
                     float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxdepth);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
-                    var cell = _rows[(int)tileIndex.Y].Columns[(int)tileIndex.X];
+                    var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
 
                     cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
 

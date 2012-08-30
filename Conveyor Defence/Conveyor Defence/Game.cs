@@ -20,6 +20,7 @@ namespace Conveyor_Defence
         protected override void Initialize()
         {
             IsMouseVisible = true;
+            
             base.Initialize();
         }
 

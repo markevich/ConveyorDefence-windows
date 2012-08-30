@@ -47,7 +47,7 @@ namespace Conveyor_Defence.Map
         public void Draw(SpriteBatch batch, Point index, float depthOffset, float depthOffsetY)
         {
 
-            int rowOffset = (int)index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
+            int rowOffset = index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
             int heightRow = 0;
 
             DrawBaseTiles(batch, index, rowOffset, depthOffsetY);
