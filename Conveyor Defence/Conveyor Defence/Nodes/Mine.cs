@@ -10,11 +10,11 @@ namespace Conveyor_Defence.Nodes
             this.RightDownTileID = 13;
         }
 
-        protected override void Output(NodeData data)
-        {
-            base.Output(data);
-            System.Diagnostics.Debug.WriteLine("Mine produce projectile number {0} !", OutputsCount);
-        }
+        //protected override void Output(NodeData data)
+        //{
+        //    base.Output(data);
+        //    System.Diagnostics.Debug.WriteLine("Mine produce projectile number {0} !", OutputsCount);
+        //}
 
     }
 }

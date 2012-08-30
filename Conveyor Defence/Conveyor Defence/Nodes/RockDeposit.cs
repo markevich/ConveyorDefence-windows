@@ -18,11 +18,11 @@ namespace Conveyor_Defence.Nodes
             var data = new Rock {LeftDownTileID = 14, RightDownTileID = 14};
             Output(data);
         }
-        protected override void Output(NodeData data)
-        {
-            base.Output(data);
-            System.Diagnostics.Debug.WriteLine("Rock number {0} generated from deposit!", OutputsCount);
-        }
+        //protected override void Output(NodeData data)
+        //{
+        //    base.Output(data);
+        //    System.Diagnostics.Debug.WriteLine("Rock number {0} generated from deposit!", OutputsCount);
+        //}
 
         protected override bool HasNodeDatas()
         {
