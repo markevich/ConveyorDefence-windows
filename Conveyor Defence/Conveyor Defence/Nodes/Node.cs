@@ -85,13 +85,6 @@ namespace Conveyor_Defence.Nodes
             return NextNode != null;
         }
 
-        public void Draw(SpriteBatch batch)
-        {
-            batch.Begin();
-
-            batch.End();
-        }
-
         public virtual void Draw(SpriteBatch batch, Vector2 position, float depth)
         {
             if (TileID == 0) return;
