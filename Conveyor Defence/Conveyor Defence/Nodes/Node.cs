@@ -11,7 +11,7 @@ namespace Conveyor_Defence.Nodes
         private readonly float _processCooldown;
         protected float TimeSinseLastProcess;
         public Node NextNode { get; set; }
-        private readonly List<NodeData> _nodeDatas;
+        protected List<NodeData> _nodeDatas;
         public NodeDirection Direction { get; set; }
         public int LeftDownTileID;
         public int RightDownTileID;
@@ -43,20 +43,19 @@ namespace Conveyor_Defence.Nodes
         {
             _nodeDatas.Add(data);
         }
-        protected virtual void Process()
+        protected virtual void Process(NodeData data)
         {
-            TimeSinseLastProcess = 0;
-            var data = GetCurrentNodeData();
-            _nodeDatas.RemoveAt(0);
-            Output(data);
+
         }
 
         protected int OutputsCount;
         protected virtual void Output(NodeData data)
         {
+            _nodeDatas.RemoveAt(0);
             OutputsCount++;
             if(NextNodeExists())
                 NextNode.Input(data);
+
         }
 
         public void Update(GameTime gameTime)
@@ -66,7 +65,10 @@ namespace Conveyor_Defence.Nodes
             TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
             if (TimeSinseLastProcess > _processCooldown)
             {
-                Process();
+                TimeSinseLastProcess = 0;
+                var data = GetCurrentNodeData();
+                Process(data);
+                Output(data);
             }
         }
 

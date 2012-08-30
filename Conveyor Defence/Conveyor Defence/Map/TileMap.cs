@@ -15,17 +15,15 @@ namespace Conveyor_Defence.Map
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
         private readonly Texture2D _mouseMap;
-        private readonly SpriteFont _tileIndexer; //for debug tiles.
         private readonly Texture2D _tileHighligter;
 
         private readonly float _maxdepth;
         private readonly Random _rnd;
 
-        public TileMap(Texture2D mouseMap, SpriteFont tileIndexer,  Texture2D tileHighligter)
+        public TileMap(Texture2D mouseMap,  Texture2D tileHighligter)
         {
             _rnd = new Random();
             _mouseMap = mouseMap;
-            _tileIndexer = tileIndexer;
             _tileHighligter = tileHighligter;
             _maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
             for (int y = 0; y < MapHeight; y++)
@@ -207,11 +205,11 @@ namespace Conveyor_Defence.Map
             var offsety = (int) tileoffset.Y;
             var rowoffset = (int)tileIndex.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
             var index = String.Format("{0},{1}", tileIndex.X, tileIndex.Y);
-            batch.DrawString(_tileIndexer, index,
+            batch.DrawString(Game.DebugFont, index,
                              new Vector2((x*Tile.TileStepX) - offsetx + rowoffset + BaseOffsetX + 24,
                                          (y*Tile.TileStepY) - offsety + BaseOffsetY + 48), Color.White, 0f,
                              Vector2.Zero,
-                             1.0f, SpriteEffects.None, 0.0f);
+                             1.0f, SpriteEffects.None, 0f);
         }
 
         private void DrawTileHighLight(SpriteBatch batch)

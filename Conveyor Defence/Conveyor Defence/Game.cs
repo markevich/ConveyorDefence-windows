@@ -9,6 +9,8 @@ namespace Conveyor_Defence
     public class Game : Microsoft.Xna.Framework.Game
     {
         readonly GraphicsDeviceManager _graphics;
+        public static SpriteFont DebugFont;
+        public static SpriteFont CountFont;
         SpriteBatch _spriteBatch;
         private TileMap _map;
         public Game()
@@ -28,9 +30,10 @@ namespace Conveyor_Defence
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             Tile.TileSetTexture = Content.Load<Texture2D>(@"Textures\TileSets\tileset");
+            DebugFont = Content.Load<SpriteFont>(@"Fonts\Pericles");
+            CountFont = Content.Load<SpriteFont>(@"Fonts\Count");
             _map = new TileMap(
                 Content.Load<Texture2D>(@"Textures\TileSets\mousemap"),
-                Content.Load<SpriteFont>(@"Fonts\Pericles"),
                 Content.Load<Texture2D>(@"Textures\TileSets\highlight")
                 );
 

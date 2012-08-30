@@ -11,13 +11,6 @@ namespace Conveyor_Defence.Nodes
             this.LeftDownTileID = 12;
             this.RightDownTileID = 12;
         }
-
-        protected override void Process()
-        {
-            TimeSinseLastProcess = 0;
-            var data = new Rock {LeftDownTileID = 14, RightDownTileID = 14};
-            Output(data);
-        }
         //protected override void Output(NodeData data)
         //{
         //    base.Output(data);
@@ -26,9 +19,9 @@ namespace Conveyor_Defence.Nodes
 
         protected override bool HasNodeDatas()
         {
+            _nodeDatas.Add(new Rock { LeftDownTileID = 14, RightDownTileID = 14 });
             return true;
         }
-
         protected override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
         {}
     }
