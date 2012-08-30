@@ -12,9 +12,11 @@ namespace Conveyor_Defence.Map
             Instance = new NodeMap();
         }
         private Node[,] Nodes { get; set; }
+        private List<Point> _towerIndexes;
         public NodeMap()
         {
             Nodes = new Node[100,100];
+            _towerIndexes = new List<Point>();
         }
 
         public Node this[int x, int y]
@@ -33,6 +35,12 @@ namespace Conveyor_Defence.Map
         public void SetNode(Node node, int x, int y)
         {
             Nodes[x, y] = node;
+        }
+
+        public void AddTower(NodeDirection direction, int x, int y)
+        {
+            _towerIndexes.Add(new Point(x, y));
+            SetNode(new Tower(){Direction = direction},x, y);
         }
 
         private List<Node> NextNodes(int x, int y)
@@ -84,6 +92,15 @@ namespace Conveyor_Defence.Map
                     node.NextNode = nextNodes[0];
                 }
         }
+        public List<Tower> GetTowers()
+        {
+            var towers = new List<Tower>();
+            foreach (var towerIndex in _towerIndexes)
+            {
+                towers.Add((Tower)this[towerIndex.X, towerIndex.Y]);
+            }
+            return towers;
+        } 
     }
 
     enum NodeDirection
