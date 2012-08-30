@@ -9,7 +9,8 @@ namespace Conveyor_Defence.Nodes
     {
         public Tower(float outputCooldown = 0) : base(outputCooldown)
         {
-
+            this.LeftDownTileID = 15;
+            this.RightDownTileID = 15;
         }
 
         private void Shoot(int x, int y)

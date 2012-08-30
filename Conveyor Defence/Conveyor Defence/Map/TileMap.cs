@@ -194,7 +194,7 @@ namespace Conveyor_Defence.Map
 
                     cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
 
-                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);

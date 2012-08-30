@@ -77,6 +77,8 @@ namespace Conveyor_Defence
             nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5 + 7, 29);
             nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 5 + 7, 30);
 
+            nodeMap.SetNode(new Tower() { Direction = NodeDirection.LeftDown }, 3 + 7, 29);
+            nodeMap.SetNode(new Tower() { Direction = NodeDirection.LeftDown }, 4 + 7, 31);
 
             nodeMap.UpdateSiblings();
         }
