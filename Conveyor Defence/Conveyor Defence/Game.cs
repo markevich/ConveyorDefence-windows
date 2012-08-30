@@ -102,7 +102,27 @@ namespace Conveyor_Defence
 
         private void HandleInput()
         {
-            KeyboardState ks = Keyboard.GetState();
+
+            var ms = Mouse.GetState();
+            var heightPercentage = ms.Y * 100 / _graphics.PreferredBackBufferHeight;
+            var widthPercentage = ms.X * 100 / _graphics.PreferredBackBufferWidth;
+            if (heightPercentage > 90)
+            {
+                Camera.Move(new Vector2(0, 6));
+            }
+            if (heightPercentage < 10)
+            {
+                Camera.Move(new Vector2(0, -6));
+            }
+            if (widthPercentage > 90)
+            {
+                Camera.Move(new Vector2(6, 0));
+            }
+            if (widthPercentage < 10)
+            {
+                Camera.Move(new Vector2(-6, 0));
+            }
+            var ks = Keyboard.GetState();
 
             if (ks.IsKeyDown(Keys.W))
             {

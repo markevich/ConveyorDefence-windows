@@ -10,8 +10,8 @@ namespace Conveyor_Defence.Map
     class TileMap
     {
         private readonly List<MapRow> _rows = new List<MapRow>();
-        public const int MapWidth = 20;
-        public const int MapHeight = 35;
+        public const int MapWidth = 30;
+        public const int MapHeight = 45;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
         private readonly Texture2D _mouseMap;
