@@ -25,7 +25,7 @@ namespace Conveyor_Defence.Nodes
             batch.DrawString(Game.CountFont, _nodeDatas.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 
-        private void Shoot(int x, int y)
+        public void Shoot(int x, int y)
         {
             
         }

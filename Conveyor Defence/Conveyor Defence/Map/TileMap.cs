@@ -192,7 +192,7 @@ namespace Conveyor_Defence.Map
 
                     cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
 
-                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);
@@ -217,9 +217,9 @@ namespace Conveyor_Defence.Map
             Vector2 hilightLoc = Camera.ScreenToWorld(new Vector2(Mouse.GetState().X, Mouse.GetState().Y));
             Point hilightPoint = WorldToMapCell(new Point((int)hilightLoc.X, (int)hilightLoc.Y));
 
-            int hilightrowOffset = 0;
+            int hilightRowOffset = 0;
             if ((hilightPoint.Y) % 2 == 1)
-                hilightrowOffset = Tile.OddRowXOffset;
+                hilightRowOffset = Tile.OddRowXOffset;
 
             batch.Draw(
                             _tileHighligter,
@@ -227,7 +227,7 @@ namespace Conveyor_Defence.Map
 
                                 new Vector2(
 
-                                    (hilightPoint.X * Tile.TileStepX) + hilightrowOffset,
+                                    (hilightPoint.X * Tile.TileStepX) + hilightRowOffset,
 
                                     (hilightPoint.Y + 2) * Tile.TileStepY)),
                             new Rectangle(0, 0, 64, 32),

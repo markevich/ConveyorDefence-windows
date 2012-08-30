@@ -110,6 +110,17 @@ namespace Conveyor_Defence
         {
 
             var ms = Mouse.GetState();
+            if(ms.LeftButton == ButtonState.Pressed)
+            {
+                var towers = NodeMap.Instance.GetTowers();
+                var cursorLocation = Camera.ScreenToWorld(new Vector2(ms.X, ms.Y));
+                foreach (var tower in towers)
+                {
+                    tower.Shoot((int)cursorLocation.X, (int)cursorLocation.Y);
+                }
+            }
+
+
             var heightPercentage = ms.Y * 100 / _graphics.PreferredBackBufferHeight;
             var widthPercentage = ms.X * 100 / _graphics.PreferredBackBufferWidth;
             if (heightPercentage > 90)
@@ -128,6 +139,9 @@ namespace Conveyor_Defence
             {
                 Camera.Move(new Vector2(-6, 0));
             }
+
+
+
             var ks = Keyboard.GetState();
 
             if (ks.IsKeyDown(Keys.W))
