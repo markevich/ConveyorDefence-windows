@@ -40,80 +40,56 @@ namespace Conveyor_Defence.Map
 
             // Create Sample Map Data
 
-            _rows[3].Columns[2].TileID = 3;
-            _rows[3].Columns[3].TileID = 1;
-            _rows[3].Columns[4].TileID = 1;
-            _rows[3].Columns[5].TileID = 2;
-            _rows[3].Columns[6].TileID = 2;
-            _rows[3].Columns[7].TileID = 2;
+            _rows[3].Columns[2 + 7].TileID = 3;
+            _rows[3].Columns[3 + 7].TileID = 1;
+            _rows[3].Columns[4 + 7].TileID = 1;
+            _rows[3].Columns[5 + 7].TileID = 2;
+            _rows[3].Columns[6 + 7].TileID = 2;
+            _rows[3].Columns[7 + 7].TileID = 2;
 
-            _rows[4].Columns[2].TileID = 3;
-            _rows[4].Columns[3].TileID = 1;
-            _rows[4].Columns[4].TileID = 1;
-            _rows[4].Columns[5].TileID = 2;
-            _rows[4].Columns[6].TileID = 2;
-            _rows[4].Columns[7].TileID = 2;
+            _rows[4].Columns[2 + 7].TileID = 3;
+            _rows[4].Columns[3 + 7].TileID = 1;
+            _rows[4].Columns[4 + 7].TileID = 1;
+            _rows[4].Columns[5 + 7].TileID = 2;
+            _rows[4].Columns[6 + 7].TileID = 2;
+            _rows[4].Columns[7 + 7].TileID = 2;
 
-            _rows[5].Columns[2].TileID = 3;
-            _rows[5].Columns[3].TileID = 1;
-            _rows[5].Columns[4].TileID = 1;
-            _rows[5].Columns[5].TileID = 2;
-            _rows[5].Columns[6].TileID = 2;
-            _rows[5].Columns[7].TileID = 2;
+            _rows[5].Columns[2 + 7].TileID = 3;
+            _rows[5].Columns[3 + 7].TileID = 1;
+            _rows[5].Columns[4 + 7].TileID = 1;
+            _rows[5].Columns[5 + 7].TileID = 2;
+            _rows[5].Columns[6 + 7].TileID = 2;
+            _rows[5].Columns[7 + 7].TileID = 2;
 
-            _rows[3].Columns[5].AddBaseTile(30);
-            _rows[4].Columns[5].AddBaseTile(27);
-            _rows[5].Columns[5].AddBaseTile(28);
+            _rows[4].Columns[6 + 7].AddBaseTile(104);
 
-            _rows[3].Columns[6].AddBaseTile(25);
-            _rows[5].Columns[6].AddBaseTile(24);
+            _rows[16].Columns[4 + 7].AddHeightTile(54);
 
-            _rows[3].Columns[7].AddBaseTile(31);
-            _rows[4].Columns[7].AddBaseTile(26);
-            _rows[5].Columns[7].AddBaseTile(29);
+            _rows[17].Columns[3 + 7].AddHeightTile(54);
 
-            _rows[4].Columns[6].AddBaseTile(104);
+            _rows[15].Columns[3 + 7].AddHeightTile(54);
+            _rows[16].Columns[3 + 7].AddHeightTile(53);
 
-            _rows[16].Columns[4].AddHeightTile(54);
+            _rows[15].Columns[4 + 7].AddHeightTile(54);
+            _rows[15].Columns[4 + 7].AddHeightTile(54);
+            _rows[15].Columns[4 + 7].AddHeightTile(51);
 
-            _rows[17].Columns[3].AddHeightTile(54);
+            _rows[18].Columns[3 + 7].AddHeightTile(51);
+            _rows[19].Columns[3 + 7].AddHeightTile(50);
+            _rows[18].Columns[4 + 7].AddHeightTile(55);
 
-            _rows[15].Columns[3].AddHeightTile(54);
-            _rows[16].Columns[3].AddHeightTile(53);
+            _rows[14].Columns[4 + 7].AddHeightTile(54);
 
-            _rows[15].Columns[4].AddHeightTile(54);
-            _rows[15].Columns[4].AddHeightTile(54);
-            _rows[15].Columns[4].AddHeightTile(51);
+            _rows[14].Columns[5 + 7].AddHeightTile(62);
+            _rows[14].Columns[5 + 7].AddHeightTile(61);
+            _rows[14].Columns[5 + 7].AddHeightTile(63);
 
-            _rows[18].Columns[3].AddHeightTile(51);
-            _rows[19].Columns[3].AddHeightTile(50);
-            _rows[18].Columns[4].AddHeightTile(55);
+            _rows[17].Columns[4 + 7].AddTopperTile(114);
+            _rows[16].Columns[5 + 7].AddTopperTile(115);
+            _rows[14].Columns[4 + 7].AddTopperTile(125);
+            _rows[15].Columns[5 + 7].AddTopperTile(91);
+            _rows[16].Columns[6 + 7].AddTopperTile(94);
 
-            _rows[14].Columns[4].AddHeightTile(54);
-
-            _rows[14].Columns[5].AddHeightTile(62);
-            _rows[14].Columns[5].AddHeightTile(61);
-            _rows[14].Columns[5].AddHeightTile(63);
-
-            _rows[17].Columns[4].AddTopperTile(114);
-            _rows[16].Columns[5].AddTopperTile(115);
-            _rows[14].Columns[4].AddTopperTile(125);
-            _rows[15].Columns[5].AddTopperTile(91);
-            _rows[16].Columns[6].AddTopperTile(94);
-
-
-            _rows[12].Columns[9].AddHeightTile(34);
-            _rows[11].Columns[9].AddHeightTile(34);
-            _rows[11].Columns[8].AddHeightTile(34);
-            _rows[10].Columns[9].AddHeightTile(34);
-
-            _rows[12].Columns[8].AddTopperTile(31);
-            _rows[13].Columns[8].AddTopperTile(31);
-
-            _rows[12].Columns[10].AddTopperTile(32);
-            _rows[13].Columns[9].AddTopperTile(32);
-
-            _rows[14].Columns[9].AddTopperTile(30);
             // End Create Sample Map Data
         }
 
