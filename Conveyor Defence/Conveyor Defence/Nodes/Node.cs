@@ -103,7 +103,8 @@ namespace Conveyor_Defence.Nodes
             DrawNodeData(batch, position, depth);
            
         }
-        public virtual void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
+
+        protected virtual void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
         {
             if (!HasNodeDatas()) return;
             var nodeDataID = GetCurrentNodeData().LeftDownTileID;

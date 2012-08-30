@@ -29,7 +29,7 @@ namespace Conveyor_Defence.Nodes
             return true;
         }
 
-        public override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
+        protected override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
         {}
     }
 }
