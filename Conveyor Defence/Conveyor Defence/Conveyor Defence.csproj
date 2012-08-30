@@ -118,6 +118,7 @@
     <Compile Include="Map\MapCell.cs" />
     <Compile Include="Map\MapRow.cs" />
     <Compile Include="Nodes\Mine.cs" />
+    <Compile Include="Nodes\Tower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Map\Tile.cs" />
