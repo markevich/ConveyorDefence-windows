@@ -13,6 +13,7 @@ namespace Conveyor_Defence.Nodes
         public Node NextNode { get; set; }
         protected List<Missile> _missiles;
         public NodeDirection Direction { get; set; }
+        public Point Index { get; set; }
         public int LeftDownTileID;
         public int RightDownTileID;
         private int TileID{
@@ -89,9 +90,15 @@ namespace Conveyor_Defence.Nodes
             return NextNode != null;
         }
 
-        public virtual void Draw(SpriteBatch batch, Vector2 position, float depth)
+        public virtual void Draw(SpriteBatch batch)
         {
             if (TileID == 0) return;
+            int rowOffset = Index.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
+
+            var position = Camera.WorldToScreen(
+                        new Vector2((Index.X * Tile.TileStepX) + rowOffset, Index.Y * Tile.TileStepY));
+            var depth = DepthCalculator.CalculateDepth(Index.X, Index.Y);
+
             batch.Draw(
                 Tile.TileSetTexture,
                 position,

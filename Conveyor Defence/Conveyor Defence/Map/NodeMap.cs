@@ -50,17 +50,14 @@ namespace Conveyor_Defence.Map
             {
                 for (int y = 0; y < TileMap.MapHeight; y++)
                 {
-                    var tileIndex = new Point(firstX + x, firstY + y);
-                    int rowOffset = tileIndex.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
+                    var index = new Point(firstX + x, firstY + y);
 
-                    if (Camera.IsTileOutsideOfMap(tileIndex)) continue;
+                    if (Camera.IsTileOutsideOfMap(index)) continue;
 
-                    var node = Nodes[tileIndex.X, tileIndex.Y];
+                    var node = Nodes[index.X, index.Y];
                     if (node == null) continue;
-                    var depth = DepthCalculator.CalculateDepth(tileIndex.X, tileIndex.Y);
-                    var position = Camera.WorldToScreen(
-                        new Vector2((tileIndex.X * Tile.TileStepX) + rowOffset, tileIndex.Y * Tile.TileStepY));
-                    node.Draw(batch, position, depth);
+                    
+                    node.Draw(batch);
 
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
@@ -70,6 +67,7 @@ namespace Conveyor_Defence.Map
         public void SetNode(Node node, int x, int y)
         {
             Nodes[x, y] = node;
+            node.Index = new Point(x,y);
         }
 
         public void AddTower(NodeDirection direction, int x, int y)

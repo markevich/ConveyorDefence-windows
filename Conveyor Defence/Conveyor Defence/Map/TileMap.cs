@@ -188,7 +188,7 @@ namespace Conveyor_Defence.Map
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
                     cell.Draw(batch, tileIndex);
 
-                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);
