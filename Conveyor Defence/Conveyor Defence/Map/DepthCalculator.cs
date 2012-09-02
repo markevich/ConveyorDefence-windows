@@ -10,7 +10,7 @@ namespace Conveyor_Defence.Map
     {
         private static float _maxDepth;
         private const float StartOffsetY =0.9f;
-        private const float DepthModifier = 0.0000001f;
+        public const float DepthModifier = 0.0000001f;
         public static void Initialize(float maxDepth)
         {
             _maxDepth = maxDepth;

@@ -26,7 +26,7 @@ namespace Conveyor_Defence.Missiles.Properties
                Vector2.Zero,
                1.0f,
                SpriteEffects.None,
-               depth - Tile.DepthModifier
+               depth - DepthCalculator.DepthModifier
                );
         }
     }
