@@ -21,13 +21,19 @@ namespace Conveyor_Defence.Nodes
 
         protected override bool HasNodeDatas()
         {
-
-            var rock = new Missile().WithProperty(new Stony());
-            //NodeMap.Instance.Missiles.Put(rock);;
-            _missiles.Add(rock);
+            if(_missiles.Count == 0)
+            {
+                var rock = CreateRock();
+                _missiles.Add(rock);
+            }
             return true;
         }
         protected override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
         {}
+
+        private Missile CreateRock()
+        {
+            return new Missile().WithProperty(new Stony());
+        }
     }
 }
