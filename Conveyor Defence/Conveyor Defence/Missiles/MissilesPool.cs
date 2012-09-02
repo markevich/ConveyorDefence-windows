@@ -21,6 +21,7 @@ namespace Conveyor_Defence.Missiles
                 if (missile.Active) continue;
 
                 missile.Active = true;
+                missile.RemoveProperties();
                 return missile;
             }
             return _missiles.AddNewObject();

@@ -45,6 +45,10 @@ namespace Conveyor_Defence.Missiles
                 property.Draw(batch, NodeIndex);
             }
         }
+        public void RemoveProperties()
+        {
+            _properties.Clear();
+        }
     }
 
 }
