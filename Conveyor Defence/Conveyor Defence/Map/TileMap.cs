@@ -17,7 +17,6 @@ namespace Conveyor_Defence.Map
         private readonly Texture2D _mouseMap;
         private readonly Texture2D _tileHighligter;
 
-        private readonly float _maxdepth;
         private readonly Random _rnd;
 
         public TileMap(Texture2D mouseMap,  Texture2D tileHighligter)
@@ -25,7 +24,8 @@ namespace Conveyor_Defence.Map
             _rnd = new Random();
             _mouseMap = mouseMap;
             _tileHighligter = tileHighligter;
-            _maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
+            var maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
+            DepthCalculator.Initialize(maxdepth);
             for (int y = 0; y < MapHeight; y++)
             {
                 var thisRow = new MapRow();
@@ -177,19 +177,18 @@ namespace Conveyor_Defence.Map
 
             var firstX = (int)firstVisibleTile.X;
             var firstY = (int)firstVisibleTile.Y;
-            float depthOffsetY = 0.9f;
+            
             for (int y = 0; y < MapHeight; y++)
             {
-                depthOffsetY -= Tile.DepthModifier;
 
                 for (int x = 0; x < MapWidth; x++)
                 {
                     var tileIndex = new Point(firstX + x, firstY + y);
-                    float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxdepth);
+                    var depthOffset = DepthCalculator.CalculateDepth(x, y);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
-
+                    float depthOffsetY = DepthCalculator.CalculateDepthOffsetY(y);
                     cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
 
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method

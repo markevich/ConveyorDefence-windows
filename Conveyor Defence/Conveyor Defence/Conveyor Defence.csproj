@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Map\DepthCalculator.cs" />
     <Compile Include="Map\NodeMap.cs" />
     <Compile Include="Misc\ObjectPool.cs" />
     <Compile Include="Missiles\Properties\MissileProperty.cs" />
