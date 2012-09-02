@@ -111,7 +111,7 @@ namespace Conveyor_Defence.Nodes
                 SpriteEffects.None,
                 depth
                 );
-            
+
             DrawNodeData(batch, position, depth);
            
         }

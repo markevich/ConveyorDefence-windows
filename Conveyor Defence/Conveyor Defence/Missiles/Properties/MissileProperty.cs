@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Conveyor_Defence.Map;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 namespace Conveyor_Defence.Missiles.Properties
 {
@@ -9,9 +10,24 @@ namespace Conveyor_Defence.Missiles.Properties
         {
             
         }
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch batch, Point nodeIndex)
         {
-
+            int rowOffset = nodeIndex.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
+            var nodePosition = Camera.WorldToScreen(
+                        new Vector2((nodeIndex.X * Tile.TileStepX) + rowOffset, nodeIndex.Y * Tile.TileStepY));
+            var missilePosition = new Vector2(nodePosition.X, nodePosition.Y - Tile.TileHeight / 4 + 2);
+            var depth = DepthCalculator.CalculateDepth(nodeIndex.X, nodeIndex.Y);
+            batch.Draw(
+               Tile.TileSetTexture,
+               missilePosition,
+               Tile.GetSourceRectangle(TileID),
+               Color.White,
+               0.0f,
+               Vector2.Zero,
+               1.0f,
+               SpriteEffects.None,
+               depth - Tile.DepthModifier
+               );
         }
     }
 }

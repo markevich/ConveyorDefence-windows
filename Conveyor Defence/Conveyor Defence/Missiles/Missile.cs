@@ -42,7 +42,7 @@ namespace Conveyor_Defence.Missiles
         {
             foreach (var property in _properties)
             {
-                property.Draw(batch);
+                property.Draw(batch, NodeIndex);
             }
         }
     }

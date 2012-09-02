@@ -21,6 +21,7 @@ namespace Conveyor_Defence.Nodes
 
         protected override bool HasNodeDatas()
         {
+
             var rock = new Missile().WithProperty(new Stony());
             //NodeMap.Instance.Missiles.Put(rock);;
             _missiles.Add(rock);
