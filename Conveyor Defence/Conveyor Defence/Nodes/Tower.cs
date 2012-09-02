@@ -16,12 +16,16 @@ namespace Conveyor_Defence.Nodes
             this.LeftDownTileID = 15;
             this.RightDownTileID = 15;
         }
-
         protected override void Output(Missile data){}
-
-        protected override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
+        protected override void Input(Missile missile)
         {
-            var position =  new Vector2(nodePosition.X + Tile.TileWidth / 2 -4, nodePosition.Y + Tile.TileHeight / 3);
+            base.Input(missile);
+            missile.Visible = false;
+        }
+        public override void Draw(SpriteBatch batch)
+        {
+            base.Draw(batch);
+            var position = new Vector2(Position.X + Tile.TileWidth / 2 - 4, Position.Y + Tile.TileHeight / 3);
             batch.DrawString(Game.CountFont, _missiles.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         }
 

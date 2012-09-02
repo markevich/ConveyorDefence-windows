@@ -40,7 +40,7 @@ namespace Conveyor_Defence.Nodes
             _missiles = new List<Missile>();
         }
 
-        private void Input(Missile missile)
+        protected virtual void Input(Missile missile)
         {
             missile.NodeIndex = Index;
             _missiles.Add(missile);
@@ -58,7 +58,7 @@ namespace Conveyor_Defence.Nodes
             if (NextNodeExists())
                 NextNode.Input(missile);
             else
-                missile.Active = false;
+                missile.Deactivate();
 
         }
 
@@ -94,15 +94,11 @@ namespace Conveyor_Defence.Nodes
         public virtual void Draw(SpriteBatch batch)
         {
             if (TileID == 0) return;
-            int rowOffset = Index.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
-
-            var position = Camera.WorldToScreen(
-                        new Vector2((Index.X * Tile.TileStepX) + rowOffset, Index.Y * Tile.TileStepY));
             var depth = DepthCalculator.CalculateDepth(Index.X, Index.Y);
 
             batch.Draw(
                 Tile.TileSetTexture,
-                position,
+                Position,
                 Tile.GetSourceRectangle(TileID),
                 Color.White,
                 0.0f,
@@ -114,5 +110,16 @@ namespace Conveyor_Defence.Nodes
         
         }
 
+        protected Vector2 Position
+        {
+            get
+            {
+                int rowOffset = Index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
+
+                var position = Camera.WorldToScreen(
+                    new Vector2((Index.X*Tile.TileStepX) + rowOffset, Index.Y*Tile.TileStepY));
+                return position;
+            }
+        }
     }
 }

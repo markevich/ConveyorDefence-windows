@@ -41,14 +41,28 @@ namespace Conveyor_Defence.Missiles
         }
         public void Draw(SpriteBatch batch)
         {
+            if (!Active || !Visible) return;
             foreach (var property in _properties)
             {
                 property.Draw(batch, NodeIndex);
             }
         }
-        public void RemoveProperties()
+
+        private void RemoveProperties()
         {
             _properties.Clear();
+        }
+
+        internal void Deactivate()
+        {
+            Active = false;
+            Visible = false;
+            RemoveProperties();
+        }
+
+        internal void Activate()
+        {
+            Active = true;
         }
     }
 

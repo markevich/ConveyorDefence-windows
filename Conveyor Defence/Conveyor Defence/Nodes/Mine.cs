@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Conveyor_Defence.Missiles;
+using Microsoft.Xna.Framework;
 
 namespace Conveyor_Defence.Nodes
 {
@@ -10,11 +11,11 @@ namespace Conveyor_Defence.Nodes
             this.RightDownTileID = 13;
         }
 
-        //protected override void Output(NodeData data)
-        //{
-        //    base.Output(data);
-        //    System.Diagnostics.Debug.WriteLine("Mine produce projectile number {0} !", OutputsCount);
-        //}
+        protected override void Output(Missile missile)
+        {
+            base.Output(missile);
+            missile.Visible = true;
+        }
 
     }
 }

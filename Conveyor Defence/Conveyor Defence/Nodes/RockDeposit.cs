@@ -13,11 +13,6 @@ namespace Conveyor_Defence.Nodes
             this.LeftDownTileID = 12;
             this.RightDownTileID = 12;
         }
-        //protected override void Output(NodeData data)
-        //{
-        //    base.Output(data);
-        //    System.Diagnostics.Debug.WriteLine("Rock number {0} generated from deposit!", OutputsCount);
-        //}
 
         protected override bool HasNodeDatas()
         {
@@ -28,8 +23,6 @@ namespace Conveyor_Defence.Nodes
             }
             return true;
         }
-        protected override void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
-        {}
 
         private Missile CreateRock()
         {

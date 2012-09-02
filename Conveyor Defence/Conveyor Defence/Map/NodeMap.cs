@@ -41,6 +41,20 @@ namespace Conveyor_Defence.Map
 
         public void Draw(SpriteBatch batch)
         {
+            DrawNodes(batch);
+            DrawMissiles(batch);
+        }
+
+        private void DrawMissiles(SpriteBatch batch)
+        {
+            foreach (Missile missile in Missiles)
+            {
+                missile.Draw(batch);
+            }
+        }
+
+        private void DrawNodes(SpriteBatch batch)
+        {
             var firstVisibleTile = Camera.FirstVisibleTileIndex;
 
             var firstX = firstVisibleTile.X;
@@ -56,15 +70,11 @@ namespace Conveyor_Defence.Map
 
                     var node = Nodes[index.X, index.Y];
                     if (node == null) continue;
-                    
+
                     node.Draw(batch);
 
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
-            }
-            foreach (Missile missile in Missiles)
-            {
-                missile.Draw(batch);
             }
         }
 

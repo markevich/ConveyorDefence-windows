@@ -20,9 +20,7 @@ namespace Conveyor_Defence.Missiles
             foreach (Missile missile in _missiles)
             {
                 if (missile.Active) continue;
-
-                missile.Active = true;
-                missile.RemoveProperties();
+                missile.Activate();
                 return missile;
             }
             return _missiles.AddNewObject();
