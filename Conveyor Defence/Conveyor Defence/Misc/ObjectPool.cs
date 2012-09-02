@@ -1,27 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace Conveyor_Defence.Misc
 {
-    /// <summary>
-    /// Represents a pool of objects with a size limit.
-    /// </summary>
-    /// <typeparam name="T">The type of object in the pool.</typeparam>
-    public sealed class ObjectPool<T> : IDisposable
-        where T : new()
+    public sealed class ObjectPool<T> : IEnumerable<T> where T : new()
     {
-        private readonly int _size;
-        private readonly object _locker;
-        private readonly Queue<T> _queue;
-        private int _count;
+        private readonly List<T> _collection;
 
-
-        /// <summary>
-        /// Initializes a new instance of the ObjectPool class.
-        /// </summary>
-        /// <param name="size">The size of the object pool.</param>
         public ObjectPool(int size)
         {
             if (size <= 0)
@@ -30,67 +18,29 @@ namespace Conveyor_Defence.Misc
                 throw new ArgumentOutOfRangeException("size", size, message);
             }
 
-            this._size = size;
-            _locker = new object();
-            _queue = new Queue<T>();
+            _collection = new List<T>(size);
         }
 
-
-        /// <summary>
-        /// Retrieves an item from the pool. 
-        /// </summary>
-        /// <returns>The item retrieved from the pool.</returns>
-        public T Get()
+        public T AddNewObject()
         {
-            lock (_locker)
-            {
-                if (_queue.Count > 0)
-                {
-                    return _queue.Dequeue();
-                }
+            var element = new T();
+            _collection.Add(element);
+            return element;
+        }
 
-                _count++;
-                return new T();
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        {
+            foreach (T obj in _collection)
+            {
+                yield return obj;
             }
         }
 
-        /// <summary>
-        /// Places an item in the pool.
-        /// </summary>
-        /// <param name="item">The item to place to the pool.</param>
-        public void Put(T item)
+        public IEnumerator GetEnumerator()
         {
-            lock (_locker)
+            foreach (var obj in _collection)
             {
-                if (_count < _size)
-                {
-                    _queue.Enqueue(item);
-                }
-                else
-                {
-                    using (item as IDisposable)
-                    {
-                        _count--;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Disposes of items in the pool that implement IDisposable.
-        /// </summary>
-        public void Dispose()
-        {
-            lock (_locker)
-            {
-                _count = 0;
-                while (_queue.Count > 0)
-                {
-                    using (_queue.Dequeue() as IDisposable)
-                    {
-
-                    }
-                }
+                yield return obj;
             }
         }
     }

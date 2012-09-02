@@ -83,6 +83,14 @@ namespace Conveyor_Defence
             nodeMap.AddTower(NodeDirection.LeftDown, 3 + 7, 29);
             nodeMap.AddTower(NodeDirection.LeftDown, 4 + 7, 31);
 
+            nodeMap.SetNode(new RockDeposit(6000) { Direction = NodeDirection.RightDown }, 10 + 7, 24);
+            nodeMap.SetNode(new Mine(2000f) { Direction = NodeDirection.LeftDown }, 10 + 7, 25);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 10 + 7, 26);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 9 + 7, 27);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 9 + 7, 28);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 8 + 7, 29);
+            nodeMap.SetNode(new Conveyor(1000f) { Direction = NodeDirection.LeftDown }, 8 + 7, 30);
+
             nodeMap.UpdateSiblings();
         }
 

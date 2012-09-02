@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Conveyor_Defence.Misc;
+using Conveyor_Defence.Missiles;
 using Conveyor_Defence.Nodes;
 using Microsoft.Xna.Framework;
 
@@ -11,12 +13,14 @@ namespace Conveyor_Defence.Map
         {
             Instance = new NodeMap();
         }
+        public MissilesPool Missiles; 
         private Node[,] Nodes { get; set; }
         private List<Point> _towerIndexes;
         public NodeMap()
         {
             Nodes = new Node[100,100];
             _towerIndexes = new List<Point>();
+            Missiles = new MissilesPool(100);
         }
 
         public Node this[int x, int y]
@@ -31,6 +35,7 @@ namespace Conveyor_Defence.Map
                 if(node != null)
                     node.Update(gameTime);
             }
+            System.Diagnostics.Debug.WriteLine(Missiles.Count);
         }
         public void SetNode(Node node, int x, int y)
         {

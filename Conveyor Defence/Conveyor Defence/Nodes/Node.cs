@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Conveyor_Defence.Map;
-using Conveyor_Defence.NodesData;
+using Conveyor_Defence.Missiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -11,7 +11,7 @@ namespace Conveyor_Defence.Nodes
         private readonly float _processCooldown;
         protected float TimeSinseLastProcess;
         public Node NextNode { get; set; }
-        protected List<NodeData> _nodeDatas;
+        protected List<Missile> _missiles;
         public NodeDirection Direction { get; set; }
         public int LeftDownTileID;
         public int RightDownTileID;
@@ -36,25 +36,27 @@ namespace Conveyor_Defence.Nodes
         protected Node(float outputCooldown)
         {
             _processCooldown = outputCooldown;
-            _nodeDatas = new List<NodeData>();
+            _missiles = new List<Missile>();
         }
 
-        private void Input(NodeData data)
+        private void Input(Missile data)
         {
-            _nodeDatas.Add(data);
+            _missiles.Add(data);
         }
-        protected virtual void Process(NodeData data)
+        protected virtual void Process(Missile missile)
         {
 
         }
 
         protected int OutputsCount;
-        protected virtual void Output(NodeData data)
+        protected virtual void Output(Missile missile)
         {
-            _nodeDatas.RemoveAt(0);
+            _missiles.RemoveAt(0);
             OutputsCount++;
-            if(NextNodeExists())
-                NextNode.Input(data);
+            if (NextNodeExists())
+                NextNode.Input(missile);
+            else
+                missile.Active = false;
 
         }
 
@@ -74,12 +76,12 @@ namespace Conveyor_Defence.Nodes
 
         protected virtual bool HasNodeDatas()
         {
-            return _nodeDatas.Count > 0;
+            return _missiles.Count > 0;
         }
 
-        private NodeData GetCurrentNodeData()
+        private Missile GetCurrentNodeData()
         {
-            return _nodeDatas[0];
+            return _missiles[0];
         }
 
         private bool NextNodeExists()
