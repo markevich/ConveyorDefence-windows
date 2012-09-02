@@ -111,27 +111,8 @@ namespace Conveyor_Defence.Nodes
                 SpriteEffects.None,
                 depth
                 );
-
-            //DrawNodeData(batch, position, depth);
-           
+        
         }
 
-        protected virtual void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
-        {
-            if (!HasNodeDatas()) return;
-            var nodeDataID = GetCurrentMissile().LeftDownTileID;
-            nodePosition = new Vector2(nodePosition.X , nodePosition.Y - Tile.TileHeight/4+2);
-            batch.Draw(
-               Tile.TileSetTexture,
-               nodePosition,
-               Tile.GetSourceRectangle(nodeDataID),
-               Color.White,
-               0.0f,
-               Vector2.Zero,
-               1.0f,
-               SpriteEffects.None,
-               depth - Tile.DepthModifier
-               );
-        }
     }
 }
