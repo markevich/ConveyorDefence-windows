@@ -12,10 +12,10 @@ namespace Conveyor_Defence.Misc
     public sealed class ObjectPool<T> : IDisposable
         where T : new()
     {
-        private readonly int size;
-        private readonly object locker;
-        private readonly Queue<T> queue;
-        private int count;
+        private readonly int _size;
+        private readonly object _locker;
+        private readonly Queue<T> _queue;
+        private int _count;
 
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace Conveyor_Defence.Misc
                 throw new ArgumentOutOfRangeException("size", size, message);
             }
 
-            this.size = size;
-            locker = new object();
-            queue = new Queue<T>();
+            this._size = size;
+            _locker = new object();
+            _queue = new Queue<T>();
         }
 
 
@@ -42,14 +42,14 @@ namespace Conveyor_Defence.Misc
         /// <returns>The item retrieved from the pool.</returns>
         public T Get()
         {
-            lock (locker)
+            lock (_locker)
             {
-                if (queue.Count > 0)
+                if (_queue.Count > 0)
                 {
-                    return queue.Dequeue();
+                    return _queue.Dequeue();
                 }
 
-                count++;
+                _count++;
                 return new T();
             }
         }
@@ -60,17 +60,17 @@ namespace Conveyor_Defence.Misc
         /// <param name="item">The item to place to the pool.</param>
         public void Put(T item)
         {
-            lock (locker)
+            lock (_locker)
             {
-                if (count < size)
+                if (_count < _size)
                 {
-                    queue.Enqueue(item);
+                    _queue.Enqueue(item);
                 }
                 else
                 {
                     using (item as IDisposable)
                     {
-                        count--;
+                        _count--;
                     }
                 }
             }
@@ -81,12 +81,12 @@ namespace Conveyor_Defence.Misc
         /// </summary>
         public void Dispose()
         {
-            lock (locker)
+            lock (_locker)
             {
-                count = 0;
-                while (queue.Count > 0)
+                _count = 0;
+                while (_queue.Count > 0)
                 {
-                    using (queue.Dequeue() as IDisposable)
+                    using (_queue.Dequeue() as IDisposable)
                     {
 
                     }
