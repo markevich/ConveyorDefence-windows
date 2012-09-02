@@ -173,10 +173,10 @@ namespace Conveyor_Defence.Map
 
         public void Draw(SpriteBatch batch)
         {
-            var firstVisibleTile = FirstVisibleTile;
+            var firstVisibleTile = Camera.FirstVisibleTileIndex;
 
-            var firstX = (int)firstVisibleTile.X;
-            var firstY = (int)firstVisibleTile.Y;
+            var firstX = firstVisibleTile.X;
+            var firstY = firstVisibleTile.Y;
             
             for (int y = 0; y < MapHeight; y++)
             {
@@ -239,12 +239,6 @@ namespace Conveyor_Defence.Map
             return (tileIndex.X >= MapWidth) || (tileIndex.Y >= MapHeight);
         }
 
-        private Vector2 FirstVisibleTile
-        {
-            get { return new Vector2(Camera.Location.X / Tile.TileStepX, Camera.Location.Y / Tile.TileStepY); }
-        }
-
-        
 
     }
 }

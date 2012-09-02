@@ -18,7 +18,7 @@ namespace Conveyor_Defence.Map
 
         public static float CalculateDepth(int x, int y, int height =0)
         {
-            var firstVisibleTile = FirstVisibleTileIndex;
+            var firstVisibleTile = Camera.FirstVisibleTileIndex;
             var tileIndex = new Point(firstVisibleTile.X + x, firstVisibleTile.Y + y);
             float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxDepth);
             return depthOffset - (height * DepthModifier);
@@ -29,10 +29,5 @@ namespace Conveyor_Defence.Map
             return StartOffsetY - DepthModifier*(y + 1);
         }
 
-
-        private static Point FirstVisibleTileIndex
-        {
-            get { return new Point((int)Camera.Location.X / Tile.TileStepX, (int)Camera.Location.Y / Tile.TileStepY); }
-        }
     }
 }

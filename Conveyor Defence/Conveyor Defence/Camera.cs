@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Conveyor_Defence.Map;
+using Microsoft.Xna.Framework;
 
 namespace Conveyor_Defence
 {
@@ -26,6 +27,10 @@ namespace Conveyor_Defence
 
         public static Vector2 DisplayOffset { get; set; }
 
+        public static Point FirstVisibleTileIndex
+        {
+            get { return new Point((int)Camera.Location.X / Tile.TileStepX, (int)Camera.Location.Y / Tile.TileStepY); }
+        }
         public static Vector2 WorldToScreen(Vector2 worldPosition)
         {
             return worldPosition - Location + DisplayOffset;
