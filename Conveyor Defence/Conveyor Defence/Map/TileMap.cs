@@ -180,16 +180,13 @@ namespace Conveyor_Defence.Map
             
             for (int y = 0; y < MapHeight; y++)
             {
-
                 for (int x = 0; x < MapWidth; x++)
                 {
                     var tileIndex = new Point(firstX + x, firstY + y);
-                    var depthOffset = DepthCalculator.CalculateDepth(x, y);
                     if (IsTileOutsideOfMap(tileIndex)) continue;
                         
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
-                    float depthOffsetY = DepthCalculator.CalculateDepthOffsetY(y);
-                    cell.Draw(batch, tileIndex, depthOffset);
+                    cell.Draw(batch, tileIndex);
 
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }

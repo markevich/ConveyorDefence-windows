@@ -44,12 +44,12 @@ namespace Conveyor_Defence.Map
             _topperTiles.Add(tileID);
         }
 
-        public void Draw(SpriteBatch batch, Point index, float depthOffset)
+        public void Draw(SpriteBatch batch, Point index)
         {
 
             int rowOffset = index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
             int heightRow = 0;
-
+            var depthOffset = DepthCalculator.CalculateDepth(index.X, index.Y);
             DrawBaseTiles(batch, index, rowOffset);
 
             DrawHeightTiles(batch, index, depthOffset, ref heightRow, rowOffset);
