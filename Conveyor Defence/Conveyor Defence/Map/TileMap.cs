@@ -189,7 +189,7 @@ namespace Conveyor_Defence.Map
                         
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
                     float depthOffsetY = DepthCalculator.CalculateDepthOffsetY(y);
-                    cell.Draw(batch, tileIndex, depthOffset, depthOffsetY);
+                    cell.Draw(batch, tileIndex, depthOffset);
 
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }

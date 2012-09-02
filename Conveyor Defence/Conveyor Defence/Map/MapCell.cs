@@ -44,13 +44,13 @@ namespace Conveyor_Defence.Map
             _topperTiles.Add(tileID);
         }
 
-        public void Draw(SpriteBatch batch, Point index, float depthOffset, float depthOffsetY)
+        public void Draw(SpriteBatch batch, Point index, float depthOffset)
         {
 
             int rowOffset = index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
             int heightRow = 0;
 
-            DrawBaseTiles(batch, index, rowOffset, depthOffsetY);
+            DrawBaseTiles(batch, index, rowOffset);
 
             DrawHeightTiles(batch, index, depthOffset, ref heightRow, rowOffset);
 
@@ -75,11 +75,11 @@ namespace Conveyor_Defence.Map
 
         }
 
-        private void DrawBaseTiles(SpriteBatch batch, Point index, int rowOffset, float depthOffsetY)
+        private void DrawBaseTiles(SpriteBatch batch, Point index, int rowOffset)
         {
             foreach (int tileID in _baseTiles)
             {
-                depthOffsetY -= Tile.DepthModifier;
+                var depthOffsetY = DepthCalculator.CalculateDepthOffsetY(index.Y);
                 batch.Draw(
                     Tile.TileSetTexture,
                     Camera.WorldToScreen(
