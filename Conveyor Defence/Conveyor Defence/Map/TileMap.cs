@@ -178,17 +178,17 @@ namespace Conveyor_Defence.Map
             var firstX = firstVisibleTile.X;
             var firstY = firstVisibleTile.Y;
             
-            for (int y = 0; y < MapHeight; y++)
+            for (int x = 0; x < MapWidth; x++)
             {
-                for (int x = 0; x < MapWidth; x++)
+                for (int y = 0; y < MapHeight; y++)
                 {
                     var tileIndex = new Point(firstX + x, firstY + y);
-                    if (IsTileOutsideOfMap(tileIndex)) continue;
+                    if (Camera.IsTileOutsideOfMap(tileIndex)) continue;
                         
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
                     cell.Draw(batch, tileIndex);
 
-                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);
@@ -234,11 +234,7 @@ namespace Conveyor_Defence.Map
                             SpriteEffects.None,
                             0.0f);
         }
-        private bool IsTileOutsideOfMap(Point tileIndex)
-        {
-            return (tileIndex.X >= MapWidth) || (tileIndex.Y >= MapHeight);
-        }
-
+        
 
     }
 }

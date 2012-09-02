@@ -57,23 +57,6 @@ namespace Conveyor_Defence.Map
 
             DrawTopperTiles(batch, index, rowOffset);
 
-            DrawNode(batch, index, rowOffset);
-
-        }
-
-
-        private void DrawNode(SpriteBatch batch, Point index, int rowOffset)
-        {
-            var node = NodeMap.Instance[index.X, index.Y];
-            if (node == null)
-            {
-                return;
-            }
-            var depth = DepthCalculator.CalculateDepth(index.X, index.Y, Height);
-            var position = Camera.WorldToScreen(
-                new Vector2((index.X*Tile.TileStepX) + rowOffset, index.Y*Tile.TileStepY));
-            node.Draw(batch, position, depth);
-
         }
 
         private void DrawBaseTiles(SpriteBatch batch, Point index, int rowOffset)

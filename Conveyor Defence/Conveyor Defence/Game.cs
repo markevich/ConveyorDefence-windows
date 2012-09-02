@@ -175,9 +175,8 @@ namespace Conveyor_Defence
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
             _map.Draw(_spriteBatch);
-
+            NodeMap.Instance.Draw(_spriteBatch);
             _spriteBatch.End();
-
             base.Draw(gameTime);
         }
     }

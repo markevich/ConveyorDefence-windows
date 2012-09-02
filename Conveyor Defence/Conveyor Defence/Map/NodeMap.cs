@@ -3,6 +3,7 @@ using Conveyor_Defence.Misc;
 using Conveyor_Defence.Missiles;
 using Conveyor_Defence.Nodes;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Conveyor_Defence.Map
 {
@@ -18,7 +19,7 @@ namespace Conveyor_Defence.Map
         private List<Point> _towerIndexes;
         public NodeMap()
         {
-            Nodes = new Node[100,100];
+            Nodes = new Node[TileMap.MapWidth,TileMap.MapHeight];
             _towerIndexes = new List<Point>();
             Missiles = new MissilesPool(100);
         }
@@ -37,6 +38,35 @@ namespace Conveyor_Defence.Map
             }
             System.Diagnostics.Debug.WriteLine(Missiles.Count);
         }
+
+        public void Draw(SpriteBatch batch)
+        {
+            var firstVisibleTile = Camera.FirstVisibleTileIndex;
+
+            var firstX = firstVisibleTile.X;
+            var firstY = firstVisibleTile.Y;
+
+            for (int x = 0; x < TileMap.MapWidth; x++)
+            {
+                for (int y = 0; y < TileMap.MapHeight; y++)
+                {
+                    var tileIndex = new Point(firstX + x, firstY + y);
+                    int rowOffset = tileIndex.Y % 2 == 1 ? Tile.OddRowXOffset : 0;
+
+                    if (Camera.IsTileOutsideOfMap(tileIndex)) continue;
+
+                    var node = Nodes[tileIndex.X, tileIndex.Y];
+                    if (node == null) continue;
+                    var depth = DepthCalculator.CalculateDepth(tileIndex.X, tileIndex.Y);
+                    var position = Camera.WorldToScreen(
+                        new Vector2((tileIndex.X * Tile.TileStepX) + rowOffset, tileIndex.Y * Tile.TileStepY));
+                    node.Draw(batch, position, depth);
+
+                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                }
+            }
+        }
+
         public void SetNode(Node node, int x, int y)
         {
             Nodes[x, y] = node;

@@ -31,6 +31,10 @@ namespace Conveyor_Defence
         {
             get { return new Point((int)Camera.Location.X / Tile.TileStepX, (int)Camera.Location.Y / Tile.TileStepY); }
         }
+        public static bool IsTileOutsideOfMap(Point tileIndex)
+        {
+            return (tileIndex.X >= TileMap.MapWidth) || (tileIndex.Y >= TileMap.MapHeight);
+        }
         public static Vector2 WorldToScreen(Vector2 worldPosition)
         {
             return worldPosition - Location + DisplayOffset;
