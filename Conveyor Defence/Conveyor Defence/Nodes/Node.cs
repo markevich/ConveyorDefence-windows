@@ -112,7 +112,7 @@ namespace Conveyor_Defence.Nodes
                 depth
                 );
 
-            DrawNodeData(batch, position, depth);
+            //DrawNodeData(batch, position, depth);
            
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management.Instrumentation;
@@ -7,7 +8,7 @@ using Conveyor_Defence.Misc;
 
 namespace Conveyor_Defence.Missiles
 {
-    class MissilesPool
+    class MissilesPool:IEnumerable
     {
         private ObjectPool<Missile> _missiles; 
         public MissilesPool(int size)
@@ -38,5 +39,13 @@ namespace Conveyor_Defence.Missiles
                 }
                 return count;
             }}
+        public IEnumerator GetEnumerator()
+        {
+            foreach (Missile missile in _missiles)
+            {
+                yield return missile;
+            }
+        }
+
     }
 }

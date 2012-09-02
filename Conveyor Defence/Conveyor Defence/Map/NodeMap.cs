@@ -62,6 +62,10 @@ namespace Conveyor_Defence.Map
                     //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
+            foreach (Missile missile in Missiles)
+            {
+                missile.Draw(batch);
+            }
         }
 
         public void SetNode(Node node, int x, int y)
