@@ -51,7 +51,6 @@ namespace Conveyor_Defence.Map
         {
 
             int rowOffset = index.Y%2 == 1 ? Tile.OddRowXOffset : 0;
-            int heightRow = 0;
             DrawBaseTiles(batch, index, rowOffset);
 
             DrawHeightTiles(batch, index, rowOffset);
