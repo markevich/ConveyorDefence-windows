@@ -33,7 +33,7 @@ namespace Conveyor_Defence.Nodes
 
         private Missile CreateRock()
         {
-            return new Missile().WithProperty(new Stony());
+            return NodeMap.Instance.Missiles.GetFreeMissile().WithProperty(new Stony());
         }
     }
 }

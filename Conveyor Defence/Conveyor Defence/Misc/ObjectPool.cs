@@ -9,20 +9,26 @@ namespace Conveyor_Defence.Misc
     public sealed class ObjectPool<T> : IEnumerable<T> where T : new()
     {
         private readonly List<T> _collection;
-
+        private readonly int _capacity;
         public ObjectPool(int size)
         {
             if (size <= 0)
             {
-                const string message = "The size of the pool must be greater than zero.";
-                throw new ArgumentOutOfRangeException("size", size, message);
+                throw new ArgumentOutOfRangeException("size", size, "The size of the pool must be greater than zero.");
             }
-
+            _capacity = size;
             _collection = new List<T>(size);
         }
 
         public T AddNewObject()
         {
+            if (_collection.Count > _capacity)
+            {
+                var message =  String.Format("Number of object in pool exceeded the maximum capacity", _collection.Count);
+                throw new ArgumentOutOfRangeException("size", _capacity, message);
+
+            }
+             
             var element = new T();
             _collection.Add(element);
             return element;

@@ -21,7 +21,8 @@ namespace Conveyor_Defence.Missiles
         public bool Visible { get; set; }
         public Missile()
         {
-            Visible = Active = false;
+            Visible =  false;
+            Active = true;
             _properties = new List<MissileProperty>();
         }
 
