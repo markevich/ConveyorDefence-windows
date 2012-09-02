@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 using Conveyor_Defence.Missiles.Properties;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 namespace Conveyor_Defence.Missiles
 {
     class Missile
@@ -15,7 +18,6 @@ namespace Conveyor_Defence.Missiles
         }
         public bool Active { get; set; }
         public bool Visible { get; set; }
-
         public Missile()
         {
             Visible = Active = false;
@@ -26,6 +28,21 @@ namespace Conveyor_Defence.Missiles
         {
             _properties.Add(property);
             return this;
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            foreach (var property in _properties)
+            {
+                property.Update(gameTime);
+            }
+        }
+        public void Draw(SpriteBatch batch)
+        {
+            foreach (var property in _properties)
+            {
+                property.Draw(batch);
+            }
         }
     }
 

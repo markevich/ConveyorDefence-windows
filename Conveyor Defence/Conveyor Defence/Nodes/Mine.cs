@@ -1,4 +1,6 @@
-﻿namespace Conveyor_Defence.Nodes
+﻿using Microsoft.Xna.Framework;
+
+namespace Conveyor_Defence.Nodes
 {
     class Mine : Node
     {

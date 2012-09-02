@@ -1,7 +1,17 @@
-﻿namespace Conveyor_Defence.Missiles.Properties
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+namespace Conveyor_Defence.Missiles.Properties
 {
-    class MissileProperty
+    abstract class MissileProperty
     {
         public int TileID;
+        public void Update(GameTime gameTime)
+        {
+            
+        }
+        public void Draw(SpriteBatch batch)
+        {
+
+        }
     }
 }
