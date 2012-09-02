@@ -1,4 +1,5 @@
 ﻿using Conveyor_Defence.Missiles;
+using Conveyor_Defence.Missiles.Properties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Conveyor_Defence.Map;
@@ -20,7 +21,7 @@ namespace Conveyor_Defence.Nodes
 
         protected override bool HasNodeDatas()
         {
-            var rock = new Missile{LeftDownTileID = 14, RightDownTileID = 14};
+            var rock = new Missile().WithProperty(new Stony());
             //NodeMap.Instance.Missiles.Put(rock);;
             _missiles.Add(rock);
             return true;
