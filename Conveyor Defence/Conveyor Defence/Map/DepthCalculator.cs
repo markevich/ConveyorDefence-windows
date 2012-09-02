@@ -16,12 +16,12 @@ namespace Conveyor_Defence.Map
             _maxDepth = maxDepth;
         }
 
-        public static float CalculateDepth(int x, int y)
+        public static float CalculateDepth(int x, int y, int height =0)
         {
             var firstVisibleTile = FirstVisibleTileIndex;
             var tileIndex = new Point(firstVisibleTile.X + x, firstVisibleTile.Y + y);
             float depthOffset = 0.7f - ((tileIndex.X + (tileIndex.Y * Tile.TileWidth)) / _maxDepth);
-            return depthOffset;
+            return depthOffset - (height * DepthModifier);
         }
 
         public static float CalculateDepthOffsetY(int y)
