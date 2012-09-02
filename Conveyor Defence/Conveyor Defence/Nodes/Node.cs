@@ -40,9 +40,10 @@ namespace Conveyor_Defence.Nodes
             _missiles = new List<Missile>();
         }
 
-        private void Input(Missile data)
+        private void Input(Missile missile)
         {
-            _missiles.Add(data);
+            missile.NodeIndex = Index;
+            _missiles.Add(missile);
         }
         protected virtual void Process(Missile missile)
         {
@@ -69,7 +70,7 @@ namespace Conveyor_Defence.Nodes
             if (TimeSinseLastProcess > _processCooldown)
             {
                 TimeSinseLastProcess = 0;
-                var data = GetCurrentNodeData();
+                var data = GetCurrentMissile();
                 Process(data);
                 Output(data);
             }
@@ -80,7 +81,7 @@ namespace Conveyor_Defence.Nodes
             return _missiles.Count > 0;
         }
 
-        private Missile GetCurrentNodeData()
+        private Missile GetCurrentMissile()
         {
             return _missiles[0];
         }
@@ -118,7 +119,7 @@ namespace Conveyor_Defence.Nodes
         protected virtual void DrawNodeData(SpriteBatch batch, Vector2 nodePosition, float depth)
         {
             if (!HasNodeDatas()) return;
-            var nodeDataID = GetCurrentNodeData().LeftDownTileID;
+            var nodeDataID = GetCurrentMissile().LeftDownTileID;
             nodePosition = new Vector2(nodePosition.X , nodePosition.Y - Tile.TileHeight/4+2);
             batch.Draw(
                Tile.TileSetTexture,

@@ -8,6 +8,7 @@ namespace Conveyor_Defence.Missiles
     class Missile
     {
         private List<MissileProperty> _properties;
+        public Point NodeIndex { get; set; }
         public int LeftDownTileID
         {
             get { return _properties[0].TileID; }
