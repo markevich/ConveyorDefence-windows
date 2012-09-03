@@ -36,7 +36,6 @@ namespace Conveyor_Defence.Map
                 if(node != null)
                     node.Update(gameTime);
             }
-            System.Diagnostics.Debug.WriteLine(Missiles.Count);
         }
 
         public void Draw(SpriteBatch batch)

@@ -36,18 +36,12 @@ namespace Conveyor_Defence.Misc
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
-            foreach (T obj in _collection)
-            {
-                yield return obj;
-            }
+            return ((IEnumerable<T>) _collection).GetEnumerator();
         }
 
         public IEnumerator GetEnumerator()
         {
-            foreach (var obj in _collection)
-            {
-                yield return obj;
-            }
+            return _collection.GetEnumerator();
         }
     }
 }

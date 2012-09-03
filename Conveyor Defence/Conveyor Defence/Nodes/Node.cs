@@ -97,7 +97,7 @@ namespace Conveyor_Defence.Nodes
             var depth = DepthCalculator.CalculateDepth(Index.X, Index.Y);
 
             batch.Draw(
-                Tile.TileSetTexture,
+                Tile.TileTexture,
                 Position,
                 Tile.GetSourceRectangle(TileID),
                 Color.White,

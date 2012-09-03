@@ -24,7 +24,7 @@ namespace Conveyor_Defence.Map
             _rnd = new Random();
             _mouseMap = mouseMap;
             _tileHighligter = tileHighligter;
-            var maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
+            const int maxdepth = ((MapWidth + 1) + ((MapHeight + 1) * Tile.TileWidth)) * 10;
             DepthCalculator.Initialize(maxdepth);
             for (int y = 0; y < MapHeight; y++)
             {

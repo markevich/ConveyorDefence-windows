@@ -5,7 +5,7 @@ namespace Conveyor_Defence.Map
 {
     static class Tile
     {
-        public static Texture2D TileSetTexture;
+        public static Texture2D TileTexture;
         public const int TileWidth = 64;
         public const int TileHeight = 64;
         public const int TileStepX = 64;
@@ -15,8 +15,8 @@ namespace Conveyor_Defence.Map
 
         static public Rectangle GetSourceRectangle(int tileIndex)
         {
-            var tileY = tileIndex / (TileSetTexture.Width / TileWidth);
-            var tileX = tileIndex % (TileSetTexture.Width / TileWidth);
+            var tileY = tileIndex / (TileTexture.Width / TileWidth);
+            var tileX = tileIndex % (TileTexture.Width / TileWidth);
 
             return new Rectangle(tileX * TileWidth, tileY * TileHeight, TileWidth, TileHeight);
         }

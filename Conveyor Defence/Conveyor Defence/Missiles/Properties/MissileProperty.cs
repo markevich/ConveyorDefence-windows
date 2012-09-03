@@ -18,7 +18,7 @@ namespace Conveyor_Defence.Missiles.Properties
             var missilePosition = new Vector2(nodePosition.X, nodePosition.Y - Tile.TileHeight / 4 + 2);
             var depth = DepthCalculator.CalculateDepth(nodeIndex.X, nodeIndex.Y);
             batch.Draw(
-               Tile.TileSetTexture,
+               Tile.TileTexture,
                missilePosition,
                Tile.GetSourceRectangle(TileID),
                Color.White,

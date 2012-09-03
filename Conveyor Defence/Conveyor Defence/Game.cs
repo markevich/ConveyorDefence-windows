@@ -29,7 +29,7 @@ namespace Conveyor_Defence
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Tile.TileSetTexture = Content.Load<Texture2D>(@"Textures\TileSets\tileset");
+            Tile.TileTexture = Content.Load<Texture2D>(@"Textures\TileSets\tileset");
             DebugFont = Content.Load<SpriteFont>(@"Fonts\Pericles");
             CountFont = Content.Load<SpriteFont>(@"Fonts\Count");
             _map = new TileMap(

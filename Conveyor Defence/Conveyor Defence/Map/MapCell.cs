@@ -65,7 +65,7 @@ namespace Conveyor_Defence.Map
             {
                 var depthOffsetY = DepthCalculator.CalculateDepthOffsetY(index.Y);
                 batch.Draw(
-                    Tile.TileSetTexture,
+                    Tile.TileTexture,
                     Camera.WorldToScreen(
                         new Vector2((index.X*Tile.TileStepX) + rowOffset, index.Y*Tile.TileStepY)),
                     Tile.GetSourceRectangle(tileID),
@@ -85,7 +85,7 @@ namespace Conveyor_Defence.Map
                 int tileID = _heightTiles[i];
                 var depth = DepthCalculator.CalculateDepth(index.X, index.Y, i);
                 batch.Draw(
-                    Tile.TileSetTexture,
+                    Tile.TileTexture,
                     Camera.WorldToScreen(
                         new Vector2(
                             (index.X*Tile.TileStepX) + rowOffset,
@@ -107,7 +107,7 @@ namespace Conveyor_Defence.Map
             foreach (int tileID in _topperTiles)
             {
                 batch.Draw(
-                    Tile.TileSetTexture,
+                    Tile.TileTexture,
                     Camera.WorldToScreen(
                         new Vector2((index.X*Tile.TileStepX) + rowOffset, index.Y*Tile.TileStepY)),
                     Tile.GetSourceRectangle(tileID),
