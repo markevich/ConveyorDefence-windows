@@ -13,6 +13,9 @@
    * TileMap
 * Animation
  * Find sprite animation library(Need to look at source code of some others XNA games, such as 'Terraria').
+* Map
+ * :O Create map editor.
+ * Add de/serialization of map via xml
 * (done)Implement node map.
   * (done)Use node map for finding next nodes.
 * (done)Implement Draw method for nodes.
