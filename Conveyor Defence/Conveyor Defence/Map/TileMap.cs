@@ -10,7 +10,7 @@ namespace Conveyor_Defence.Map
     class TileMap
     {
         private readonly List<MapRow> _rows = new List<MapRow>();
-        public const int MapWidth = 30;
+        public const int MapWidth = 22;
         public const int MapHeight = 45;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
@@ -88,9 +88,39 @@ namespace Conveyor_Defence.Map
             _rows[15].Columns[5 + 7].AddTopperTile(91);
             _rows[16].Columns[6 + 7].AddTopperTile(94);
 
+
+            #region holes
+            RemoveRow(11, 30, 0, ref _rows);
+            _rows[34].Columns[12] = null;
+            RemoveRow(35, 44, 12, ref _rows);
+
+            RemoveRow(13, 31, 0, ref _rows);
+            RemoveRow(35, 44, 11, ref _rows);
+
+            RemoveRow(15, 32, 0, ref _rows);
+            RemoveRow(37, 44, 11, ref _rows);
+
+
+            RemoveRow(37, 44, 10, ref _rows);
+            RemoveRow(38, 44, 10, ref _rows);
+            _rows[36].Columns[11] = null;
+            _rows[10].Columns[0] = null;
+            _rows[12].Columns[0] = null;
+            _rows[14].Columns[0] = null;
+            #endregion
+            
+
             // End Create Sample Map Data
         }
-
+        private void RemoveRow(int startX, int finishX, int startY, ref List<MapRow> rows )
+        {
+            int y = startY;
+            for (int i = startX; i<=finishX;i++)
+            {
+                if (i % 2 == 0) y++;
+                rows[i].Columns[y] = null;
+            }
+        }
         public Point WorldToMapCell(Point worldPoint)
         {
             Point dummy;
@@ -186,9 +216,10 @@ namespace Conveyor_Defence.Map
                     if (Camera.IsTileOutsideOfMap(tileIndex)) continue;
                         
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
+                    if (cell == null) continue;
                     cell.Draw(batch, tileIndex);
 
-                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);
@@ -203,7 +234,7 @@ namespace Conveyor_Defence.Map
             var index = String.Format("{0},{1}", tileIndex.X, tileIndex.Y);
             batch.DrawString(Game.DebugFont, index,
                              new Vector2((x*Tile.TileStepX) - offsetx + rowoffset + BaseOffsetX + 24,
-                                         (y*Tile.TileStepY) - offsety + BaseOffsetY + 48), Color.White, 0f,
+                                         (y*Tile.TileStepY) - offsety + BaseOffsetY +10), Color.White, 0f,
                              Vector2.Zero,
                              1.0f, SpriteEffects.None, 0f);
         }
