@@ -71,8 +71,6 @@ namespace Conveyor_Defence.Map
                     if (node == null) continue;
 
                     node.Draw(batch);
-
-                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
         }

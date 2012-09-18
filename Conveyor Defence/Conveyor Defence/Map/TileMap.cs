@@ -11,7 +11,7 @@ namespace Conveyor_Defence.Map
     {
         private readonly List<MapRow> _rows = new List<MapRow>();
         public const int MapWidth = 30;
-        public const int MapHeight = 80;
+        public const int MapHeight = 45;
         public const int BaseOffsetX = -32;
         public const int BaseOffsetY = -64;
         private readonly Texture2D _mouseMap;
@@ -188,7 +188,7 @@ namespace Conveyor_Defence.Map
                     var cell = _rows[tileIndex.Y].Columns[tileIndex.X];
                     cell.Draw(batch, tileIndex);
 
-                    //DrawTileIndexes(batch, tileIndex, x, y); //helper method
+                    DrawTileIndexes(batch, tileIndex, x, y); //helper method
                 }
             }
             DrawTileHighLight(batch);
