@@ -17,6 +17,9 @@ namespace Conveyor_Defence
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
