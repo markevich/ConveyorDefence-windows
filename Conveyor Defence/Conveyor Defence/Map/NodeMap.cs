@@ -81,10 +81,10 @@ namespace Conveyor_Defence.Map
             node.Index = new Point(x,y);
         }
 
-        public void AddTower(NodeDirection direction, int x, int y)
+        public void AddTower(Node tower, int x, int y)
         {
             _towerIndexes.Add(new Point(x, y));
-            SetNode(new Tower(){Direction = direction},x, y);
+            SetNode(tower, x, y);
         }
 
         private List<Node> NextNodes(int x, int y)
@@ -136,12 +136,12 @@ namespace Conveyor_Defence.Map
                     node.NextNode = nextNodes[0];
                 }
         }
-        public List<Tower> GetTowers()
+        public List<Node> GetTowers()
         {
-            var towers = new List<Tower>();
+            var towers = new List<Node>();
             foreach (var towerIndex in _towerIndexes)
             {
-                towers.Add((Tower)this[towerIndex.X, towerIndex.Y]);
+                towers.Add(this[towerIndex.X, towerIndex.Y]);
             }
             return towers;
         } 

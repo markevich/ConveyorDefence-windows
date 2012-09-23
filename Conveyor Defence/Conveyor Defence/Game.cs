@@ -84,8 +84,8 @@ namespace Conveyor_Defence
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 12, 29);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 12, 30);
 
-            nodeMap.AddTower(NodeDirection.LeftDown, 10, 29);
-            nodeMap.AddTower(NodeDirection.LeftDown, 11, 31);
+            nodeMap.AddTower(NodeFactory.Tower(NodeDirection.LeftDown), 10, 29);
+            nodeMap.AddTower(NodeFactory.Tower(NodeDirection.LeftDown), 11, 31);
 
             nodeMap.SetNode(new RockDeposit(1000f) { Direction = NodeDirection.RightDown }, 17, 24);
             nodeMap.SetNode(new Mine(500f) { Direction = NodeDirection.LeftDown }, 17, 25);
@@ -122,15 +122,15 @@ namespace Conveyor_Defence
         {
 
             var ms = Mouse.GetState();
-            if(ms.LeftButton == ButtonState.Pressed)
-            {
-                var towers = NodeMap.Instance.GetTowers();
-                var cursorLocation = Camera.ScreenToWorld(new Vector2(ms.X, ms.Y));
-                foreach (var tower in towers)
-                {
-                    tower.Shoot((int)cursorLocation.X, (int)cursorLocation.Y);
-                }
-            }
+            //if(ms.LeftButton == ButtonState.Pressed)
+            //{
+            //    var towers = NodeMap.Instance.GetTowers();
+            //    var cursorLocation = Camera.ScreenToWorld(new Vector2(ms.X, ms.Y));
+            //    foreach (var tower in towers)
+            //    {
+            //        tower.Shoot((int)cursorLocation.X, (int)cursorLocation.Y);
+            //    }
+            //}
 
 
             var heightPercentage = ms.Y * 100 / _graphics.PreferredBackBufferHeight;

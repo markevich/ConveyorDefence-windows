@@ -142,6 +142,8 @@ namespace Conveyor_Defence.Nodes
                 SpriteEffects.None,
                 depth
                 );
+            var position = new Vector2(Position.X + Tile.TileWidth / 2 - 4, Position.Y + Tile.TileHeight / 3);
+            batch.DrawString(Game.CountFont, _missiles.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         
         }
 

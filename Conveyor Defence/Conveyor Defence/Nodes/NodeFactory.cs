@@ -20,5 +20,9 @@ namespace Conveyor_Defence.Nodes
             float outputCD = new Random().Next(400, 1000);
             return new Node(outputCD, 13, 13, direction, new StandartInput(), new StandartProcess(), new StandartOutput());
         }
+        public static Node Tower(NodeDirection direction)
+        {
+            return new Node(200, 15, 15, direction, new StandartInput(), new StandartProcess(), new NoOutput());
+        }
     }
 }
