@@ -9,6 +9,7 @@
  * Nodes should set their direction automatically, based on sibling nodes.
  * Implement Storage node.
 * Architecture
+ * Change all Public classes to Internal =)
  * Inherit classes from DrawableGameComponent instead of updating and drawing it from main Game class.
    * NodeMap
    * TileMap
