@@ -3,12 +3,15 @@ using Conveyor_Defence.Map;
 using Conveyor_Defence.Missiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Conveyor_Defence.Nodes.Strategies;
 
 namespace Conveyor_Defence.Nodes
 {
     class Node
     {
         private readonly float _processCooldown;
+        private InputStrategy _inputStrategy;
+
         protected float TimeSinseLastProcess;
         public Node NextNode { get; set; }
         protected List<Missile> _missiles;
@@ -34,14 +37,23 @@ namespace Conveyor_Defence.Nodes
                 return 0;
             }
         }
-        protected Node(float outputCooldown)
+        public Node(float outputCooldown)
         {
             _processCooldown = outputCooldown;
             _missiles = new List<Missile>();
         }
+        public Node(float outputCooldown, int leftDownTileID, int rightDownTileID, NodeDirection direction, InputStrategy inputStrategy):this(outputCooldown)
+        {
+            LeftDownTileID = leftDownTileID;
+            RightDownTileID = rightDownTileID;
+            Direction = direction;
+            _inputStrategy = inputStrategy;
+        }
 
         protected virtual void Input(Missile missile)
         {
+            if(_inputStrategy != null) missile = _inputStrategy.Input(missile);
+            if (missile == null) return;
             missile.NodeIndex = Index;
             _missiles.Add(missile);
         }
