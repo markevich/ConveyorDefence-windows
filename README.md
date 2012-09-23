@@ -6,6 +6,7 @@
       * Draw it with shader
 * Nodes
  * Think about using pattern "Strategy" instead of using inheritance.
+ * Nodes should set their direction automatically, based on sibling nodes.
  * Implement Storage node.
 * Architecture
  * Inherit classes from DrawableGameComponent instead of updating and drawing it from main Game class.
