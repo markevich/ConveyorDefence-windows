@@ -9,7 +9,7 @@ using Conveyor_Defence.Nodes.Strategies.Process;
 
 namespace Conveyor_Defence.Nodes
 {
-    class Node
+    internal class Node
     {
         private readonly float _processCooldown;
         private InputStrategy _inputStrategy;
@@ -23,17 +23,19 @@ namespace Conveyor_Defence.Nodes
         public Point Index { get; set; }
         public int LeftDownTileID;
         public int RightDownTileID;
-        private int TileID{
+
+        private int TileID
+        {
             get
             {
                 switch (Direction)
                 {
-                        case NodeDirection.LeftDown:
+                    case NodeDirection.LeftDown:
                         {
                             return LeftDownTileID;
 
                         }
-                        case NodeDirection.RightDown:
+                    case NodeDirection.RightDown:
                         {
                             return RightDownTileID;
                         }
@@ -41,13 +43,16 @@ namespace Conveyor_Defence.Nodes
                 return 0;
             }
         }
+
         public Node(float outputCooldown)
         {
             _processCooldown = outputCooldown;
             _missiles = new List<Missile>();
         }
+
         public Node(float outputCooldown, int leftDownTileID, int rightDownTileID, NodeDirection direction,
-            InputStrategy inputStrategy,ProcessStrategy processStrategy, OutputStrategy outputStrategy):this(outputCooldown)
+                    InputStrategy inputStrategy, ProcessStrategy processStrategy, OutputStrategy outputStrategy)
+            : this(outputCooldown)
         {
             LeftDownTileID = leftDownTileID;
             RightDownTileID = rightDownTileID;
@@ -68,36 +73,34 @@ namespace Conveyor_Defence.Nodes
 
         }
 
-        protected virtual void Process(Missile missile)
+        protected virtual void Process()
         {
             _processStrategy.Process(ref _missiles);
         }
 
         protected int OutputsCount;
-        protected virtual void Output(Missile missile)
-        {
 
-                Node nextNode = NextNode;
-                _outputStrategy.Output(ref _missiles, ref nextNode);
+        protected virtual void Output()
+        {
+            Node nextNode = NextNode;
+            _outputStrategy.Output(ref _missiles, ref nextNode);
 
             OutputsCount++;
         }
 
         public void Update(GameTime gameTime)
         {
-            //if(Index.X == 10,6)
-            if (_processStrategy != null)
+
+            if (_processStrategy.GetType() != typeof (GenerateRock) && _missiles.Count == 0) return;
+            TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
+            if (TimeSinseLastProcess > _processCooldown)
             {
-                if (_processStrategy.GetType() != typeof(GenerateRock) && _missiles.Count ==0) return;
-                TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
-                if (TimeSinseLastProcess > _processCooldown)
-                {
-                    TimeSinseLastProcess = 0;
-                    Process(null);
-                    Output(null);
-                }
+                TimeSinseLastProcess = 0;
+                Process();
+                Output();
             }
-          
+
+
         }
 
         protected virtual bool HasNodeDatas()
@@ -133,7 +136,7 @@ namespace Conveyor_Defence.Nodes
                 );
             //var position = new Vector2(Position.X + Tile.TileWidth / 2 - 4, Position.Y + Tile.TileHeight / 3);
             //batch.DrawString(Game.CountFont, _missiles.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
-        
+
         }
 
         protected Vector2 Position
