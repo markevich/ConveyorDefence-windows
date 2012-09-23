@@ -13,6 +13,7 @@ namespace Conveyor_Defence.Nodes.Strategies.Process
         public override void Process(ref List<Missile> missiles)
         {
             var rock = NodeMap.Instance.Missiles.GetFreeMissile().WithProperty(new Stony());
+            rock.Visible = true;
             missiles.Add(rock);
         }
     }

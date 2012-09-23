@@ -5,6 +5,7 @@ using Conveyor_Defence.Missiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Conveyor_Defence.Nodes.Strategies;
+using Conveyor_Defence.Nodes.Strategies.Process;
 
 namespace Conveyor_Defence.Nodes
 {
@@ -59,15 +60,9 @@ namespace Conveyor_Defence.Nodes
         public virtual void Input(Missile missile)
         {
 
-            if (_inputStrategy != null)
-            {
-                _inputStrategy.Input(ref missile, ref _missiles);
-            }
-            else
-            {
+            _inputStrategy.Input(ref missile, ref _missiles);
 
-                _missiles.Add(missile);
-            }
+
 
             missile.NodeIndex = Index;
 
@@ -75,40 +70,34 @@ namespace Conveyor_Defence.Nodes
 
         protected virtual void Process(Missile missile)
         {
-            if(_processStrategy != null) _processStrategy.Process(ref _missiles);
+            _processStrategy.Process(ref _missiles);
         }
 
         protected int OutputsCount;
         protected virtual void Output(Missile missile)
         {
-            if (_outputStrategy!=null)
-            {
+
                 Node nextNode = NextNode;
                 _outputStrategy.Output(ref _missiles, ref nextNode);
-            }
-            else
-            {
-                _missiles.RemoveAt(0);
-                if (NextNodeExists())
-                    NextNode.Input(missile);
-                else
-                    missile.Deactivate();
-            }
+
             OutputsCount++;
         }
 
         public void Update(GameTime gameTime)
         {
-            if (!HasNodeDatas()) return;
-            
-            TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
-            if (TimeSinseLastProcess > _processCooldown)
+            //if(Index.X == 10,6)
+            if (_processStrategy != null)
             {
-                TimeSinseLastProcess = 0;
-                var data = GetCurrentMissile();
-                Process(data);
-                Output(data);
+                if (_processStrategy.GetType() != typeof(GenerateRock) && _missiles.Count ==0) return;
+                TimeSinseLastProcess += gameTime.ElapsedGameTime.Milliseconds;
+                if (TimeSinseLastProcess > _processCooldown)
+                {
+                    TimeSinseLastProcess = 0;
+                    Process(null);
+                    Output(null);
+                }
             }
+          
         }
 
         protected virtual bool HasNodeDatas()
@@ -142,8 +131,8 @@ namespace Conveyor_Defence.Nodes
                 SpriteEffects.None,
                 depth
                 );
-            var position = new Vector2(Position.X + Tile.TileWidth / 2 - 4, Position.Y + Tile.TileHeight / 3);
-            batch.DrawString(Game.CountFont, _missiles.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
+            //var position = new Vector2(Position.X + Tile.TileWidth / 2 - 4, Position.Y + Tile.TileHeight / 3);
+            //batch.DrawString(Game.CountFont, _missiles.Count.ToString(), position, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
         
         }
 

@@ -115,13 +115,11 @@
     <Compile Include="Missiles\MissilesPool.cs" />
     <Compile Include="Missiles\Properties\Stony.cs" />
     <Compile Include="Nodes\NodeFactory.cs" />
-    <Compile Include="Nodes\RockDeposit.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Nodes\Node.cs" />
     <Compile Include="Missiles\Missile.cs" />
     <Compile Include="Map\MapCell.cs" />
     <Compile Include="Map\MapRow.cs" />
-    <Compile Include="Nodes\Mine.cs" />
     <Compile Include="Nodes\Strategies\InputStrategy.cs" />
     <Compile Include="Nodes\Strategies\Input\NoInput.cs" />
     <Compile Include="Nodes\Strategies\Input\StandartInput.cs" />

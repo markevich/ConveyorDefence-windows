@@ -47,9 +47,8 @@ namespace Conveyor_Defence
             //        _nodeMap.SetNode(new Conveyor(1000), i, j);
             
             var nodeMap = NodeMap.Instance;
-            
-            nodeMap.SetNode(new RockDeposit(2000f) {Direction = NodeDirection.LeftDown}, 10, 4);
-            nodeMap.SetNode(new Mine(500f) { Direction = NodeDirection.RightDown }, 9, 5);
+
+            nodeMap.SetNode(NodeFactory.GetRockMine(NodeDirection.RightDown), 9, 5);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.RightDown), 10, 6);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 10, 7);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 10, 8);
@@ -74,8 +73,8 @@ namespace Conveyor_Defence
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 11, 27);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 11, 28);
 
-            nodeMap.SetNode(new RockDeposit(1500f) { Direction = NodeDirection.RightDown }, 15, 22);
-            nodeMap.SetNode(new Mine(500f) { Direction = NodeDirection.LeftDown }, 15, 23);
+
+            nodeMap.SetNode(NodeFactory.GetRockMine(NodeDirection.LeftDown), 15, 23);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 15, 24);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 14, 25);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 14, 26);
@@ -87,8 +86,7 @@ namespace Conveyor_Defence
             nodeMap.AddTower(NodeFactory.Tower(NodeDirection.LeftDown), 10, 29);
             nodeMap.AddTower(NodeFactory.Tower(NodeDirection.LeftDown), 11, 31);
 
-            nodeMap.SetNode(new RockDeposit(1000f) { Direction = NodeDirection.RightDown }, 17, 24);
-            nodeMap.SetNode(new Mine(500f) { Direction = NodeDirection.LeftDown }, 17, 25);
+            nodeMap.SetNode(NodeFactory.GetRockMine(NodeDirection.LeftDown), 17, 25);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 17, 26);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 16, 27);
             nodeMap.SetNode(NodeFactory.GetConveyour(NodeDirection.LeftDown), 16, 28);

@@ -13,12 +13,12 @@ namespace Conveyor_Defence.Nodes
     {
         public static Node GetConveyour(NodeDirection direction)
         {
-            return new Node(300f, 10, 11, direction, new StandartInput(), new StandartProcess(), new StandartOutput());
+            return new Node(600f, 10, 11, direction, new StandartInput(), new StandartProcess(), new StandartOutput());
         }
         public static Node GetRockMine(NodeDirection direction)
         {
-            float outputCD = new Random().Next(400, 1000);
-            return new Node(outputCD, 13, 13, direction, new StandartInput(), new StandartProcess(), new StandartOutput());
+            float outputCD = new Random().Next(1000, 1500);
+            return new Node(outputCD, 12, 12, direction, new NoInput(), new GenerateRock(), new StandartOutput());
         }
         public static Node Tower(NodeDirection direction)
         {
