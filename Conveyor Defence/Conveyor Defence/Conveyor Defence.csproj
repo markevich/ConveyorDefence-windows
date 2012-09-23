@@ -125,6 +125,8 @@
     <Compile Include="Nodes\Strategies\InputStrategy.cs" />
     <Compile Include="Nodes\Strategies\Input\NoInput.cs" />
     <Compile Include="Nodes\Strategies\Input\StandartInput.cs" />
+    <Compile Include="Nodes\Strategies\OutputStrategy.cs" />
+    <Compile Include="Nodes\Strategies\ProcessStrategy.cs" />
     <Compile Include="Nodes\Tower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
