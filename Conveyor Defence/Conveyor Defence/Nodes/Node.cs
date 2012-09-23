@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Conveyor_Defence.Nodes
 {
-    abstract class Node
+    class Node
     {
         private readonly float _processCooldown;
         protected float TimeSinseLastProcess;
