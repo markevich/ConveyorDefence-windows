@@ -8,6 +8,6 @@ namespace Conveyor_Defence.Nodes.Strategies
 {
     abstract class InputStrategy
     {
-        public abstract Missile Input(Missile missile);
+        public abstract void Input(ref Missile missile, ref List<Missile> missiles);
     }
 }

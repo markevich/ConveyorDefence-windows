@@ -8,9 +8,6 @@ namespace Conveyor_Defence.Nodes.Strategies.Input
 {
     class NoInput:InputStrategy
     {
-        public override Missile Input(Missile missile)
-        {
-            return null;
-        }
+        public override void Input(ref Missile missile, ref List<Missile> missiles){}
     }
 }

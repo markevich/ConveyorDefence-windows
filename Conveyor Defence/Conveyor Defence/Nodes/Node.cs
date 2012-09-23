@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Conveyor_Defence.Map;
 using Conveyor_Defence.Missiles;
 using Microsoft.Xna.Framework;
@@ -52,10 +53,22 @@ namespace Conveyor_Defence.Nodes
 
         protected virtual void Input(Missile missile)
         {
-            if(_inputStrategy != null) missile = _inputStrategy.Input(missile);
-            if (missile == null) return;
-            missile.NodeIndex = Index;
-            _missiles.Add(missile);
+            try
+            {
+                if (_inputStrategy != null)
+                {
+                    _inputStrategy.Input(ref missile, ref _missiles);
+                }
+                else
+                {
+                    
+                    _missiles.Add(missile);
+                }
+            }
+            finally
+            {
+                missile.NodeIndex = Index; 
+            }
         }
         protected virtual void Process(Missile missile)
         {

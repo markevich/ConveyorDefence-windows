@@ -8,9 +8,9 @@ namespace Conveyor_Defence.Nodes.Strategies.Input
 {
     class StandartInput:InputStrategy
     {
-        public override Missile Input(Missile missile)
+        public override void Input(ref Missile missile, ref List<Missile> missiles)
         {
-            return missile;
+            missiles.Add(missile);
         }
     }
 }
