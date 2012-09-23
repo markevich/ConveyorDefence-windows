@@ -8,6 +8,6 @@ namespace Conveyor_Defence.Nodes.Strategies
 {
     abstract class OutputStrategy
     {
-        public abstract void Output(Missile missile);
+        public abstract void Output(ref List<Missiles.Missile> missiles, ref Node nextNode);
     }
 }

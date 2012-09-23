@@ -17,7 +17,7 @@ namespace Conveyor_Defence.Nodes
             this.RightDownTileID = 15;
         }
         protected override void Output(Missile data){}
-        protected override void Input(Missile missile)
+        public override void Input(Missile missile)
         {
             base.Input(missile);
             missile.Visible = false;

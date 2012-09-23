@@ -12,6 +12,8 @@ namespace Conveyor_Defence.Nodes
     {
         private readonly float _processCooldown;
         private InputStrategy _inputStrategy;
+        private OutputStrategy _outputStrategy;
+        private ProcessStrategy _processStrategy;
 
         protected float TimeSinseLastProcess;
         public Node NextNode { get; set; }
@@ -43,48 +45,56 @@ namespace Conveyor_Defence.Nodes
             _processCooldown = outputCooldown;
             _missiles = new List<Missile>();
         }
-        public Node(float outputCooldown, int leftDownTileID, int rightDownTileID, NodeDirection direction, InputStrategy inputStrategy):this(outputCooldown)
+        public Node(float outputCooldown, int leftDownTileID, int rightDownTileID, NodeDirection direction,
+            InputStrategy inputStrategy,ProcessStrategy processStrategy, OutputStrategy outputStrategy):this(outputCooldown)
         {
             LeftDownTileID = leftDownTileID;
             RightDownTileID = rightDownTileID;
             Direction = direction;
             _inputStrategy = inputStrategy;
+            _outputStrategy = outputStrategy;
+            _processStrategy = processStrategy;
         }
 
-        protected virtual void Input(Missile missile)
+        public virtual void Input(Missile missile)
         {
-            try
+
+            if (_inputStrategy != null)
             {
-                if (_inputStrategy != null)
-                {
-                    _inputStrategy.Input(ref missile, ref _missiles);
-                }
-                else
-                {
-                    
-                    _missiles.Add(missile);
-                }
+                _inputStrategy.Input(ref missile, ref _missiles);
             }
-            finally
+            else
             {
-                missile.NodeIndex = Index; 
+
+                _missiles.Add(missile);
             }
+
+            missile.NodeIndex = Index;
+
         }
+
         protected virtual void Process(Missile missile)
         {
-
+            if(_processStrategy != null) _processStrategy.Process(ref _missiles);
         }
 
         protected int OutputsCount;
         protected virtual void Output(Missile missile)
         {
-            _missiles.RemoveAt(0);
-            OutputsCount++;
-            if (NextNodeExists())
-                NextNode.Input(missile);
+            if (_outputStrategy!=null)
+            {
+                Node nextNode = NextNode;
+                _outputStrategy.Output(ref _missiles, ref nextNode);
+            }
             else
-                missile.Deactivate();
-
+            {
+                _missiles.RemoveAt(0);
+                if (NextNodeExists())
+                    NextNode.Input(missile);
+                else
+                    missile.Deactivate();
+            }
+            OutputsCount++;
         }
 
         public void Update(GameTime gameTime)

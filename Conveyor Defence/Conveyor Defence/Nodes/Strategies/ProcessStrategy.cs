@@ -8,6 +8,6 @@ namespace Conveyor_Defence.Nodes.Strategies
 {
     abstract class ProcessStrategy
     {
-        public abstract void Process(Missile missile);
+        public abstract void Process(ref List<Missile> missiles);
     }
 }
