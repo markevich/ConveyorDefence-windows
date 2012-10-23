@@ -49,15 +49,62 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Map\DepthCalculator.cs" />
+    <Compile Include="Map\MapCell.cs" />
+    <Compile Include="Map\MapRow.cs" />
+    <Compile Include="Map\NodeMap.cs" />
+    <Compile Include="Map\Tile.cs" />
+    <Compile Include="Map\TileMap.cs" />
+    <Compile Include="Misc\ObjectPool.cs" />
+    <Compile Include="Missiles\Missile.cs" />
+    <Compile Include="Missiles\MissilesPool.cs" />
+    <Compile Include="Missiles\Properties\MissileProperty.cs" />
+    <Compile Include="Missiles\Properties\Stony.cs" />
+    <Compile Include="Nodes\Node.cs" />
+    <Compile Include="Nodes\NodeFactory.cs" />
+    <Compile Include="Nodes\Strategies\InputStrategy.cs" />
+    <Compile Include="Nodes\Strategies\OutputStrategy.cs" />
+    <Compile Include="Nodes\Strategies\ProcessStrategy.cs" />
+    <Compile Include="Nodes\Strategies\Input\NoInput.cs" />
+    <Compile Include="Nodes\Strategies\Input\StandartInput.cs" />
+    <Compile Include="Nodes\Strategies\Output\NoOutput.cs" />
+    <Compile Include="Nodes\Strategies\Output\StandartOutput.cs" />
+    <Compile Include="Nodes\Strategies\Process\GenerateRock.cs" />
+    <Compile Include="Nodes\Strategies\Process\StandartProcess.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="ConveyourDefence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Map\" />
+    <Folder Include="Misc\" />
+    <Folder Include="Missiles\" />
+    <Folder Include="Nodes\" />
     <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="Content\Fonts\Count.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Fonts\Pericles.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSets\highlight.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSets\mousemap.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSets\slopemaps.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Textures\TileSets\tileset.xnb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
