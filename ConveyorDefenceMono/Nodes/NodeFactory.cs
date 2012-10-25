@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConveyourDefence.Nodes.Strategies.Input;
-using ConveyourDefence.Map;
-using ConveyourDefence.Nodes.Strategies.Output;
-using ConveyourDefence.Nodes.Strategies.Process;
+using ConveyorDefence.Nodes.Strategies.Input;
+using ConveyorDefence.Map;
+using ConveyorDefence.Nodes.Strategies.Output;
+using ConveyorDefence.Nodes.Strategies.Process;
 
-namespace ConveyourDefence.Nodes
+namespace ConveyorDefence.Nodes
 {
     internal static class NodeFactory
     {

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConveyourDefence.Map;
-using ConveyourDefence.Missiles;
-using ConveyourDefence.Missiles.Properties;
+using ConveyorDefence.Map;
+using ConveyorDefence.Missiles;
+using ConveyorDefence.Missiles.Properties;
 
-namespace ConveyourDefence.Nodes.Strategies.Process
+namespace ConveyorDefence.Nodes.Strategies.Process
 {
     class GenerateRock:ProcessStrategy
     {

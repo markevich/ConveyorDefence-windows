@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     class MapRow
     {

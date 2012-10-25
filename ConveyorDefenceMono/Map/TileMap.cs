@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Microsoft.Xna.Framework.Input;
-using ConveyourDefence.Nodes;
+using ConveyorDefence.Nodes;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     class TileMap
     {

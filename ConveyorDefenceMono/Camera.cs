@@ -1,7 +1,7 @@
-﻿using ConveyourDefence.Map;
+﻿using ConveyorDefence.Map;
 using Microsoft.Xna.Framework;
 
-namespace ConveyourDefence
+namespace ConveyorDefence
 {
     public static class Camera
     {

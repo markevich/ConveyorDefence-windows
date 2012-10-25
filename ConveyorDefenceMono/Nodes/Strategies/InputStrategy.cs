@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConveyourDefence.Missiles;
+using ConveyorDefence.Missiles;
 
-namespace ConveyourDefence.Nodes.Strategies
+namespace ConveyorDefence.Nodes.Strategies
 {
     abstract class InputStrategy
     {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConveyourDefence.Misc
+namespace ConveyorDefence.Misc
 {
     public sealed class ObjectPool<T> : IEnumerable<T> where T : new()
     {

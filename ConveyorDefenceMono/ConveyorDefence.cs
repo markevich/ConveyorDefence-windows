@@ -1,19 +1,19 @@
-﻿using ConveyourDefence.Map;
-using ConveyourDefence.Nodes;
+﻿using ConveyorDefence.Map;
+using ConveyorDefence.Nodes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace ConveyourDefence
+namespace ConveyorDefence
 {
-    public class ConveyourDefence : Microsoft.Xna.Framework.Game
+    public class ConveyorDefence : Microsoft.Xna.Framework.Game
     {
         readonly GraphicsDeviceManager _graphics;
         public static SpriteFont DebugFont;
         public static SpriteFont CountFont;
         SpriteBatch _spriteBatch;
         private TileMap _map;
-        public ConveyourDefence()
+        public ConveyorDefence()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

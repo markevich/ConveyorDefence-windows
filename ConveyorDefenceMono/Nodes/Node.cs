@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using ConveyourDefence.Map;
-using ConveyourDefence.Missiles;
+using ConveyorDefence.Map;
+using ConveyorDefence.Missiles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ConveyourDefence.Nodes.Strategies;
-using ConveyourDefence.Nodes.Strategies.Process;
+using ConveyorDefence.Nodes.Strategies;
+using ConveyorDefence.Nodes.Strategies.Process;
 
-namespace ConveyourDefence.Nodes
+namespace ConveyorDefence.Nodes
 {
     internal class Node
     {

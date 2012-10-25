@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using ConveyourDefence.Missiles.Properties;
+using ConveyorDefence.Missiles.Properties;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ConveyourDefence.Missiles
+namespace ConveyorDefence.Missiles
 {
     class Missile
     {

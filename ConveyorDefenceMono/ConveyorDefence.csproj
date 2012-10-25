@@ -74,7 +74,7 @@
     <Compile Include="Nodes\Strategies\Process\GenerateRock.cs" />
     <Compile Include="Nodes\Strategies\Process\StandartProcess.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="ConveyourDefence.cs" />
+    <Compile Include="ConveyorDefence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

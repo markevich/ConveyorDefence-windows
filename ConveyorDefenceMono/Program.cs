@@ -5,11 +5,11 @@ using System.Linq;
 
 #endregion
 
-namespace ConveyourDefence
+namespace ConveyorDefence
 {
 	static class Program
 	{
-		private static ConveyourDefence game;
+		private static ConveyorDefence game;
 
 		/// <summary>
 		/// The main entry point for the application.
@@ -17,7 +17,7 @@ namespace ConveyourDefence
 		[STAThread]
 		static void Main ()
 		{
-			game = new ConveyourDefence();
+			game = new ConveyorDefence();
 			game.Run ();
 		}
 	}

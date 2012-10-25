@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConveyourDefence.Misc;
+using ConveyorDefence.Misc;
 
-namespace ConveyourDefence.Missiles
+namespace ConveyorDefence.Missiles
 {
     class MissilesPool:IEnumerable
     {

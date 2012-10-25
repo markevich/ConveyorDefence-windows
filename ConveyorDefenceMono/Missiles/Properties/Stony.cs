@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ConveyourDefence.Missiles.Properties
+namespace ConveyorDefence.Missiles.Properties
 {
     class Stony:MissileProperty
     {

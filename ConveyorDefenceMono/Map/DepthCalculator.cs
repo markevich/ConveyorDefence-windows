@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     static class DepthCalculator
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using ConveyourDefence.Misc;
-using ConveyourDefence.Missiles;
-using ConveyourDefence.Nodes;
+using ConveyorDefence.Misc;
+using ConveyorDefence.Missiles;
+using ConveyorDefence.Nodes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     class NodeMap
     {

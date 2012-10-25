@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     static class Tile
     {

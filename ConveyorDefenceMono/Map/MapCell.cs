@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ConveyourDefence.Nodes;
+using ConveyorDefence.Nodes;
 
-namespace ConveyourDefence.Map
+namespace ConveyorDefence.Map
 {
     class MapCell
     {

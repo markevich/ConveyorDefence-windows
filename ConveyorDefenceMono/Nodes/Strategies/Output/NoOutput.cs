@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ConveyourDefence.Missiles;
+using ConveyorDefence.Missiles;
 
-namespace ConveyourDefence.Nodes.Strategies.Output
+namespace ConveyorDefence.Nodes.Strategies.Output
 {
     class NoOutput:OutputStrategy
     {

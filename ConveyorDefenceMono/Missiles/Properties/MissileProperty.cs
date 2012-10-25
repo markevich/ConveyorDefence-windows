@@ -1,7 +1,7 @@
-﻿using ConveyourDefence.Map;
+﻿using ConveyorDefence.Map;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-namespace ConveyourDefence.Missiles.Properties
+namespace ConveyorDefence.Missiles.Properties
 {
     abstract class MissileProperty
     {
